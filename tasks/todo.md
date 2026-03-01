@@ -1,41 +1,37 @@
-# Brief 1: Foundation — Scaffold, Database, Data Pipeline, Backend API
+# Brief 1: Foundation — COMPLETE
+
+## Results
+- 127 metro Detroit courses, 1,998 holes imported
+- All API endpoints verified (health, courses, holes, guide, favorites)
+- Repo: https://github.com/productparty/linksiq
+
+## Deviations from original brief
+- Used golfcourseapi.com instead of golfapi.io (different API, different data format)
+- Auth header format: `Key` not `Bearer`
+- Tees grouped by male/female (not flat array) — normalizer updated
+- No filtering by state in API — paginated through all 30k courses, saved MI to local JSON
+- Used Supabase connection pooler (aws-0-us-west-2.pooler.supabase.com) instead of direct DB host
+
+---
+
+# Brief 2: Frontend — IN PROGRESS
 
 ## Plan
-- [x] Step 1: Project scaffold — create directory structure, .gitignore, requirements.txt
-- [x] Step 2: Cherry-pick backend code from findmyclub (golf_api.py, auth.py, limiter)
-- [x] Step 3: Database schema — create migration SQL file (001_initial_schema.sql)
-- [x] Step 4: Database connection module (psycopg2 with context managers)
-- [x] Step 5: Pydantic models (schemas.py — all request/response shapes)
-- [x] Step 6: Backend services (course_service.py, golf_api.py, auth.py)
-- [x] Step 7: API routes (courses, holes, favorites, health)
-- [x] Step 8: FastAPI app.py with CORS, rate limiting, router registration
-- [x] Step 9: Import script (import_courses.py) — Golf API → Supabase pipeline
-- [x] Step 10: Environment config (.env.example)
-- [x] Step 11: Git init
-- [ ] Step 12: **BLOCKED** — Golf API key not found in findmyclub .env
+- [ ] Step 1: Scaffold Vite + React + TypeScript project
+- [ ] Step 2: Cherry-pick frontend files from findmyclub (auth, favorites, error handling, etc.)
+- [ ] Step 3: MUI theme + LinksIQ branding
+- [ ] Step 4: API client + React Query setup
+- [ ] Step 5: Layout (Header, Footer, routing)
+- [ ] Step 6: Landing page
+- [ ] Step 7: Course List page
+- [ ] Step 8: Course Detail page
+- [ ] Step 9: Hole Detail page
+- [ ] Step 10: Course Walkthrough page
+- [ ] Step 11: PDF Course Guide generation
+- [ ] Step 12: Auth pages (SignIn, CreateAccount, PasswordReset, AuthCallback)
+- [ ] Step 13: Favorites page
+- [ ] Step 14: Vercel + Railway deployment config
+- [ ] Step 15: Verify all acceptance criteria
 
 ## Progress Notes
-
-### What was done
-All code scaffolding is complete. The full backend is written and structured per the brief:
-- FastAPI app with proper separation (routers → services → db)
-- Cherry-picked `fetch_paginated()`, API config, and auth pattern from findmyclub
-- Normalized hole data into rows (not wide columns like findmyclub)
-- Auth uses Supabase GoTrue REST API directly (no Supabase Python SDK)
-- Rate limiting via SlowAPI
-- Import script with upsert pattern and rate limit handling
-- Migration SQL matches brief exactly (courses, holes, profiles, user_favorites + RLS)
-
-### Design decisions
-- Used httpx instead of Supabase Python SDK for auth token verification (calls GoTrue /auth/v1/user directly) — aligns with "no Supabase SDK for backend" rule
-- Kept holes router mostly empty since all hole endpoints live under /courses/{id}/holes — router exists as placeholder per project structure
-- Import script uses named params for all SQL to avoid positional/named mixing
-
-### Blocker
-**GOLF_API_KEY is missing from findmyclub's .env file.** The key was referenced in dataload.py but never stored in the committed .env. Need the key to:
-1. Verify the Golf API is still accessible
-2. Run the import pipeline
-3. Populate Michigan course data
-
-## Review
-[Blocked on API key — all code complete and ready to test]
+Starting Brief 2 execution.

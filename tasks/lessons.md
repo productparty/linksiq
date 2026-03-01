@@ -14,3 +14,7 @@
 - Cherry-pick specific functions, not entire files
 - Verify external API keys before building pipelines that depend on them
 - Data-first: populate DB before building UI
+- Save API data to local JSON to avoid re-fetching (300/day free tier limit)
+- golfcourseapi.com uses `Authorization: Key {key}` not Bearer
+- golfcourseapi.com has no state filter — must paginate and filter client-side
+- Supabase pooler connection: user=`postgres.{ref}` host=`aws-0-{region}.pooler.supabase.com`
