@@ -1,0 +1,323 @@
+[
+    {
+        "course_name": "Eagle Eye Golf Club",
+        "_notes": "5 showcase course. 6 of 18 holes covered. Chris Lutzke design, Bath MI.",
+        "description": "A Chris Lutzke design carved through 245 acres of natural terrain. Known for the TPC Sawgrass-replica island green on hole 17. Consistently ranked among Michigan's top public courses.",
+        "walkthrough_narrative": "",
+        "holes": [
+            {
+                "hole_number": 1,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 5,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 11,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 13,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 17,
+                "elevation_description": "",
+                "terrain_description": "Exact TPC Sawgrass island green replica. Water surrounds the green on all sides.",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 18,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            }
+        ]
+    },
+    {
+        "course_name": "Shepherd's Hollow",
+        "_notes": "5 showcase course. 27-hole Jerry Matthews design, Clarkston MI. 6 holes covered.",
+        "description": "",
+        "walkthrough_narrative": "",
+        "holes": [
+            {
+                "hole_number": 1,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 4,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 10,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 15,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 17,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 22,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "30-foot rollbacks if you miss above the hole.",
+                "green_speed_range": "",
+                "green_details": "Nicknamed the 'miniature golf' green. Extremely small target with severe contours."
+            }
+        ]
+    },
+    {
+        "course_name": "Greystone Golf Club",
+        "_notes": "5 showcase course. Washington MI. 5 holes covered. Quarry finish 16-18.",
+        "description": "",
+        "walkthrough_narrative": "",
+        "holes": [
+            {
+                "hole_number": 1,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 2,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 16,
+                "elevation_description": "",
+                "terrain_description": "Quarry hole. Part of the toughest 3-hole stretch in the region (16-18).",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 17,
+                "elevation_description": "",
+                "terrain_description": "Quarry hole. Part of the toughest 3-hole stretch in the region (16-18).",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 18,
+                "elevation_description": "",
+                "terrain_description": "Quarry hole. Part of the toughest 3-hole stretch in the region (16-18).",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            }
+        ]
+    },
+    {
+        "course_name": "Moose Ridge",
+        "_notes": "5 showcase course. South Lyon MI. 4 holes covered.",
+        "description": "",
+        "walkthrough_narrative": "",
+        "holes": [
+            {
+                "hole_number": 1,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 4,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 8,
+                "elevation_description": "Blind approach over a mound.",
+                "terrain_description": "OB only 2 feet off the edge of the green.",
+                "strategic_tips": "The 'Nightmare Hole.' Trust your yardage on the blind approach — do not go long. OB is dangerously close to the green edge.",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 15,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            }
+        ]
+    },
+    {
+        "course_name": "Stonebridge Golf Club",
+        "_notes": "5 showcase course. Ann Arbor MI. 4 holes covered.",
+        "description": "",
+        "walkthrough_narrative": "Green grain grows toward the setting sun — factor this into all putts, especially in afternoon rounds.",
+        "holes": [
+            {
+                "hole_number": 1,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 6,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "#1 handicap hole. The narrow green demands precision — don't miss the target.",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": "Green is only 10 feet wide in sections. One of the most demanding green targets in metro Detroit."
+            },
+            {
+                "hole_number": 11,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            },
+            {
+                "hole_number": 15,
+                "elevation_description": "",
+                "terrain_description": "",
+                "strategic_tips": "",
+                "green_slope": "",
+                "green_speed_range": "",
+                "green_details": ""
+            }
+        ]
+    },
+    {
+        "course_name": "Dunham Hills",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Local knowledge tip: all putts break away from the clubhouse. Use this as your default read on any putt you're unsure about.",
+        "holes": []
+    },
+    {
+        "course_name": "Bay Pointe",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Built on a bog foundation — expect zero fairway roll on drives regardless of conditions. Club up and play for carry distance only.",
+        "holes": []
+    },
+    {
+        "course_name": "Cattails",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Staff reportedly encourages BYOB — a rarity among Michigan courses. Laid-back atmosphere.",
+        "holes": []
+    },
+    {
+        "course_name": "The Orchards",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Greens are Pennlinks bentgrass maintained at 5/32 inch during peak season. Expect fast, true surfaces.",
+        "holes": []
+    },
+    {
+        "course_name": "Mystic Creek",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Located inside Camp Dearborn — an entry fee for the park is required in addition to green fees. Plan accordingly.",
+        "holes": []
+    },
+    {
+        "course_name": "Links of Novi",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Pace timer enforcement is active — the course monitors pace of play and will enforce time limits. Keep moving.",
+        "holes": []
+    },
+    {
+        "course_name": "Rouge Park",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Known for drainage issues — the course can play very wet, especially in spring and after heavy rain. Cart path only rules are common.",
+        "holes": []
+    },
+    {
+        "course_name": "Rackham",
+        "_notes": "Course-level Gemini data only.",
+        "description": "",
+        "walkthrough_narrative": "Famous turtleback greens — putts run off the edges in every direction. Flooding can be an issue in low-lying areas. A historic Donald Ross design worth playing despite the conditions.",
+        "holes": []
+    }
+]
