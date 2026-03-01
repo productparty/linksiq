@@ -23,8 +23,8 @@ from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"))
 
-from server.db.connection import get_cursor
-from server.services.golf_api import (
+from db.connection import get_cursor
+from services.golf_api import (
     load_courses_from_json,
     normalize_course_data,
     normalize_holes_data,

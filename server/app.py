@@ -16,7 +16,7 @@ from slowapi.middleware import SlowAPIMiddleware
 # Load env before anything else
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-from server.routers import courses, holes, favorites, health
+from routers import courses, holes, favorites, health
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

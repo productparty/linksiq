@@ -3,13 +3,13 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, Request
 
-from server.models.schemas import (
+from models.schemas import (
     CourseDetail,
     CourseGuide,
     CourseListResponse,
     HoleResponse,
 )
-from server.services import course_service
+from services import course_service
 
 router = APIRouter(prefix="/courses", tags=["Courses"])
 

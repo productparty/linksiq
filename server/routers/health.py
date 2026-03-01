@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter
 
-from server.db.connection import get_cursor
+from db.connection import get_cursor
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["Health"])

@@ -2,9 +2,9 @@ from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request
 
-from server.models.schemas import FavoriteResponse
-from server.services.auth import authenticate_request
-from server.services import course_service
+from models.schemas import FavoriteResponse
+from services.auth import authenticate_request
+from services import course_service
 
 router = APIRouter(prefix="/favorites", tags=["Favorites"])
 

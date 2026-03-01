@@ -2,7 +2,7 @@ import math
 from typing import Optional
 from uuid import UUID
 
-from server.db.connection import get_cursor
+from db.connection import get_cursor
 
 
 def list_courses(
