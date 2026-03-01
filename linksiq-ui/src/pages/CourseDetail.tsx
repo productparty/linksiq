@@ -13,6 +13,7 @@ import {
   Chip,
   Button,
   Divider,
+  Paper,
 } from "@mui/material";
 import GolfCourseIcon from "@mui/icons-material/GolfCourse";
 import MapIcon from "@mui/icons-material/Map";
@@ -102,17 +103,23 @@ export function CourseDetail() {
       <Divider sx={{ my: 3 }} />
 
       {/* Description */}
+      {course.description && (
+        <Paper sx={{ p: 3, mb: 3, bgcolor: "primary.main", color: "primary.contrastText" }}>
+          <Typography variant="body1" sx={{ fontStyle: "italic", lineHeight: 1.8 }}>
+            {course.description}
+          </Typography>
+        </Paper>
+      )}
       {course.walkthrough_narrative && (
         <Box sx={{ mb: 3 }}>
           <Typography variant="h6" gutterBottom>
-            Overview
+            Course Intelligence
           </Typography>
-          <Typography variant="body1">{course.walkthrough_narrative}</Typography>
-        </Box>
-      )}
-      {course.description && (
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="body1">{course.description}</Typography>
+          {course.walkthrough_narrative.split(/\n\n|\n/).filter((p: string) => p.trim()).map((p: string, i: number) => (
+            <Typography key={i} variant="body1" sx={{ mb: 2 }}>
+              {p.trim()}
+            </Typography>
+          ))}
         </Box>
       )}
 

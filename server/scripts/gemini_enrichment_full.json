@@ -1,0 +1,263 @@
+[
+    {
+        "course_name": "The Orchards Golf Club",
+        "description": "The Orchards represents the architectural apex of Macomb County, established as a 525-acre residential-golf sanctuary that prioritizes an elite, private-club atmosphere for a daily-fee audience. Designed by Robert Trent Jones Jr., the course is characterized by its expansive scale, classic aesthetic, and its history as a host for high-stakes competition, including PGA Tour qualifiers.",
+        "walkthrough_narrative": "The Orchards functions as a \"Thinking Man's\" track, demanding strategic navigation rather than brute force. Its identity is deeply rooted in the Golden Age of golf architecture, mirroring the layout and pacing of 1920s private clubs. The vibe is professional and high-end, supported by a massive 27,000-square-foot practice complex that serves as a regional hub for instruction.\n\nAgronomic standards at The Orchards are among the most rigorous in the state. The course features Pennlinks bentgrass on fairways and greens, with the latter maintained at a precise height of 5/32\" to ensure consistent, championship speeds. The maintenance of the 88 \"Ohio Best\" sand bunkers is a priority, ensuring high-lip stability and consistent texture across the property.\n\nFor a mid-handicap golfer, the Tournament tees at 6,487 yards offer the most balanced experience. Course management is dictated by the Robert Trent Jones Jr. philosophy of \"risk-reward\" bunkering. Regulars suggest aiming for the center of the greens regardless of pin position, as the Pennlinks surfaces are fast enough that a 30-foot putt is often safer than a short-sided chip from the deep primary rough.\n\nThe terrain is a mix of rolling fairways and protected wetlands, providing significant visual variety. The layout is expansive, making cart use highly recommended.\n\nPeak conditions occur in July and August when the fescue rough is fully matured. The course is known for maintaining its fast green speeds well into the late autumn months. Pace of play typically runs 4 to 4:15.\n\nThe facility boasts a 400-yard range with double-tiered Penncross tees. Range balls are sold in bags of 40-45. Food service at The Grill is highly rated, with seating for 100 and an outdoor banquet area.",
+        "holes": [
+            {
+                "hole_number": 1,
+                "terrain_description": "Deceptive opener with fairway bunkering on the left that demands a high degree of placement off the tee.",
+                "strategic_tips": "Avoid fairway bunkers left. Play a high-trajectory iron shot into the elevated green to hold the surface and find the correct tier.",
+                "green_slope": "Two-tier slope that rewards high-trajectory approach shots.",
+                "green_details": "Elevated green with two distinct tiers."
+            },
+            {
+                "hole_number": 16,
+                "terrain_description": "373-yard par 4 with a landing area that narrows significantly, demanding a precise drive.",
+                "strategic_tips": "Prioritize accuracy off the tee to find the narrowing landing area. On the green, read breaks carefully as they often move away from the surrounding mounds.",
+                "green_slope": "Subtle breaks that often move away from the surrounding mounds.",
+                "green_details": "Heavily guarded green complex."
+            },
+            {
+                "hole_number": 17,
+                "terrain_description": "One of the most difficult par 4s on the property at 443 yards with severe hazard placement penalties for misses to either side.",
+                "strategic_tips": "Driver is necessary for most mid-handicappers due to the length, but accuracy is critical. Misses to either side are severely penalized by hazard placement."
+            },
+            {
+                "hole_number": 18,
+                "terrain_description": "Classic finishing hole providing a picturesque view of the clubhouse. Wide fairway offers room off the tee.",
+                "strategic_tips": "Take advantage of the wide fairway off the tee. Study the daily pin position carefully before approaching the tiered green to avoid three-putts.",
+                "green_slope": "Tiered green requiring a deep understanding of daily pin position to avoid three-putts.",
+                "green_details": "Tiered green complex with the clubhouse as backdrop."
+            }
+        ]
+    },
+    {
+        "course_name": "Shepherd's Hollow Golf Club",
+        "description": "Shepherd's Hollow is frequently cited as the premier \"Up North\" experience in Southeast Michigan, situated on massive acreage leased from a Jesuit order. The 27-hole facility is carved through dense forests of red pine and oak.",
+        "walkthrough_narrative": "Shepherd's Hollow has earned an extreme difficulty and \"beast\" reputation. Designed by Arthur Hills with a minimalist approach to preserve natural ridges and valleys, the course delivers an upscale resort vibe. The striking clubhouse overlooks the 18th and 27th greens, anchoring the experience in elegance despite the punishing layout.\n\nMaintenance is generally high, though drainage issues in the deeper valleys can linger during spring. The greens are known for their \"miniature golf\" style slopes and multiple tiers, creating putting challenges that are as memorable as they are maddening.\n\nFirst-timers must prioritize imagination over distance. Every shot demands forethought. Mid-handicappers should avoid the back tees entirely — forced carries and narrow windows can turn an 85 into a 105 in a hurry.\n\nThe terrain is exceptionally hilly and wooded across all three nines (holes 1-9, 10-18, and 19-27), with massive elevation shifts that define the character of each hole. The property is carved through dense forests, providing a true wilderness golf experience just minutes from suburban Detroit.\n\nFall is beautiful here but leaf accumulation makes finding balls nearly impossible. Weekend rounds often stretch to 5.5 to 6 hours, so plan accordingly.\n\nThe facility offers a manned bag drop, full pro shop, and GPS provided in carts — which is necessary for the many blind shots throughout the routing. Dining is above average.",
+        "holes": [
+            {
+                "hole_number": 1,
+                "terrain_description": "Monstrous 482-yard dogleg right with fairway rolling downhill and thick long rough flanking both sides.",
+                "strategic_tips": "Navigate the dogleg right carefully. Use the downhill slope on the fairway to gain distance but keep it in play — the thick long rough is punishing."
+            },
+            {
+                "hole_number": 15,
+                "terrain_description": "Shorter par 4 with a sharp right dogleg. Placement is everything on this hole.",
+                "strategic_tips": "Leave driver in the bag and focus on placement off the tee. Iron shots into the green must be precise to hold the large, rolling putting surface."
+            },
+            {
+                "hole_number": 18,
+                "terrain_description": "Breathtaking par 5 finale with a strategic tee shot over a crest and a downhill approach back toward the clubhouse.",
+                "strategic_tips": "Commit to your line over the crest off the tee. Take advantage of the downhill approach to set up a birdie look on this reachable finishing hole."
+            },
+            {
+                "hole_number": 22,
+                "green_slope": "Notorious slope that can cause a ball to roll 30 feet away from the pin and completely off the putting surface.",
+                "strategic_tips": "Stay below the hole at all costs. Any putt from above the hole risks rolling off the green entirely."
+            }
+        ]
+    },
+    {
+        "course_name": "Greystone Golf Club",
+        "description": "Greystone is a reclaimed gravel quarry transformed into an 18-hole championship layout known for the \"Best Finish in Michigan Golf.\" Designed by Jerry Matthews.",
+        "walkthrough_narrative": "Greystone carries a hybrid identity, blending parkland-style holes on the front nine with a spectacular final three-hole stretch that mimics lakeside links golf. It is widely considered a \"must-play\" for its spectacular vistas across the quarry landscape.\n\nConditioning is high-tier, with \"pure conditioning\" and fast greens being hallmarks of the experience. The greens are tiered and typically sloped back-to-front, rewarding players who understand how to use the slopes rather than fight them.\n\nThe primary tactical rule at Greystone is simple: respect the water. The final three holes account for most high scores on the card. The Grey tees at 6,267 yards provide the best experience for mid-handicappers, balancing challenge with playability.\n\nRolling hills and dramatic quarry drops define the terrain, with tree-lined sections giving way to open expanses around the lake. The visual drama builds throughout the round, culminating in the quarry finish.\n\nThe quarry holes are exceptionally windy in spring and fall, adding a significant difficulty factor that locals know to account for in club selection.\n\nThe \"Stone Grille\" offers a full menu with course views — a perfect post-round spot. The range and putting greens are maintained to match course speeds, so your warm-up session will accurately prepare you for conditions on the course.",
+        "holes": [
+            {
+                "hole_number": 2,
+                "elevation_description": "Plays severely downhill.",
+                "terrain_description": "Signature hole of the front nine. All-carry over wetland to a receptive rolling green.",
+                "strategic_tips": "Club down significantly for the elevation drop. The carry over the wetland is all-or-nothing, but the green is receptive once you clear it."
+            },
+            {
+                "hole_number": 16,
+                "elevation_description": "Plays downhill.",
+                "terrain_description": "Part of the famous quarry finish. Green guarded by pond on front, right, and back — water on three sides.",
+                "strategic_tips": "Take less club for the downhill shot and aim for the left portion of the green where there is no water. Missing left is the only safe bail-out."
+            },
+            {
+                "hole_number": 17,
+                "terrain_description": "35-acre lake lines the entire right side. Green is large but slopes toward the water.",
+                "strategic_tips": "Drive must favor the left side to avoid the 35-acre lake on the right. On approach, aim for the left-center of the green as the slope feeds everything toward the water.",
+                "green_slope": "Slopes toward the water on the right side.",
+                "green_details": "Large green but the slope toward the lake makes effective putting area smaller than it appears."
+            },
+            {
+                "hole_number": 18,
+                "elevation_description": "Slightly uphill.",
+                "terrain_description": "Long finishing par 4 with water hazards lining both the left and right sides of the fairway.",
+                "strategic_tips": "Find the fairway at all costs — water on both sides leaves no margin for error. Take an extra club for the slightly uphill approach to the green."
+            }
+        ]
+    },
+    {
+        "course_name": "Eagle Eye Golf Club",
+        "description": "Pete Dye-inspired masterpiece designed by Chris Lutzke in collaboration with Dye himself. Universally considered a mandatory pilgrimage for any serious Detroit golfer.",
+        "walkthrough_narrative": "Eagle Eye carries a true \"links\" personality, complete with railroad ties, severe mounding, and pot bunkers that evoke the Dye design philosophy at its most demanding. The course is famous for its exact dimensional replica of the TPC Sawgrass 17th island green, delivering that same \"pro\" pressure to every player who stands on the tee. The facility maintains a professional, high-stakes vibe and hosts the PGA of Michigan offices on-site.\n\nConditions are typically \"immaculate,\" though the course stretches to over 7,400 yards from the tips, making it one of the most physically demanding public courses in the Midwest. The rough is thick and brutal — staying in the fairway is not optional, it is essential for scoring.\n\nWind is the single most important factor for club selection at Eagle Eye. The open, links-style terrain provides virtually no protection from the elements. Always check the daily pin diagram before your round, as the greens are large enough for 75-foot putts if you find the wrong tier.\n\nThe terrain is rolling and open with virtually no trees in play on interior holes, creating a links-style experience that is rare for Michigan. The exposure to the elements is part of the character.\n\nEarly spring and late fall rounds are particularly cold and windy due to the exceptional exposure. Plan for conditions that are significantly more severe than surrounding courses.\n\nThere is no GPS in carts, so a mobile app or rangefinder is essential. Unlimited range balls are included with your greens fee. And do not leave without trying the garlic-seasoned French fries at the snack bar — they are a local legend.",
+        "holes": [
+            {
+                "hole_number": 9,
+                "terrain_description": "Dramatic par 5 hugging a large pond from tee to green, mirroring the TPC Sawgrass finishing hole.",
+                "strategic_tips": "Water runs the entire length of the hole. Play away from the pond on every shot — the conservative line is always the percentage play here."
+            },
+            {
+                "hole_number": 17,
+                "terrain_description": "Signature island green — exact dimensional replica of TPC Sawgrass 17th hole.",
+                "strategic_tips": "Commit fully to your club selection and swing. The island green simulates genuine tour-level pressure. Aim for the center of the green and accept any result that finds the putting surface.",
+                "green_details": "Island green surrounded entirely by water. Exact replica of the famous TPC Sawgrass 17th."
+            },
+            {
+                "hole_number": 18,
+                "terrain_description": "Long par 5 mirror-image finisher that often plays directly into the prevailing wind.",
+                "strategic_tips": "Check the wind direction carefully — this hole often plays directly into the prevailing wind, adding significant effective yardage. Club up accordingly on every shot."
+            }
+        ]
+    },
+    {
+        "course_name": "Moose Ridge Golf Course",
+        "description": "High-difficulty \"Up North\" simulation with some of the most dramatic elevation changes in the South Lyon area. Over 90 feet of elevation shifts throughout the round.",
+        "walkthrough_narrative": "Moose Ridge delivers a rustic \"Montana Lodge\" identity, with a clubhouse designed like an upscale ski lodge that sets the tone before you even reach the first tee. The course is widely considered a \"beast\" — narrow fairways and marsh-protected greens demand respect from the first swing.\n\nConditions are consistent, with \"pleasant\" fairways even in summer heat. The greens roll true but are exceptionally fast and undulating, creating a putting challenge that rewards patience and local knowledge.\n\nBring extra balls. The woods and marshes are unforgiving and ball retrieval is rarely an option. Take an extra half-club on almost every approach shot — the greens are consistently perched uphill from the fairway, making distance control the most important skill at Moose Ridge.\n\nThe terrain is extremely hilly and wooded with over 90 feet of total elevation change. This is not a walking-friendly course; carts are virtually mandatory to survive the round.\n\nThe course is particularly picturesque in fall, but difficulty increases as the fescue rough thickens through the growing season, narrowing already-tight fairways.\n\nGPS carts feature \"strict\" nature area lockouts — driving into a restricted area slows the cart to an unbearable pace, so pay attention to the boundaries. The \"Montana Lodge\" clubhouse is popular for weddings and events.",
+        "holes": [
+            {
+                "hole_number": 2,
+                "elevation_description": "Long uphill par 4.",
+                "terrain_description": "First hole of the toughest three-hole sequence in the metro area (holes 2-4).",
+                "strategic_tips": "Take extra club for the uphill approach. This is the start of the hardest stretch on the course — play conservatively and protect your score."
+            },
+            {
+                "hole_number": 3,
+                "elevation_description": "Long uphill par 4.",
+                "terrain_description": "Second hole of the brutal 2-3-4 sequence.",
+                "strategic_tips": "Another long uphill par 4 — club up on the approach and aim for the center of the green. Bogey is a good score here."
+            },
+            {
+                "hole_number": 4,
+                "terrain_description": "Snaking par 5 with a marsh-guarded green. Final hole of the toughest sequence in the metro area.",
+                "strategic_tips": "Do not go for the green in two unless you have a clear line over the marsh. Laying up to a comfortable wedge distance is the smart play."
+            },
+            {
+                "hole_number": 8,
+                "terrain_description": "Par 4 with a controversial blind second shot over a large mound. Out of bounds is only 2 feet off the green.",
+                "strategic_tips": "This is a known card-wrecker. If you do not know the line for the blind second shot, ask the group ahead or check GPS. OB is only 2 feet off the green — precision is non-negotiable."
+            },
+            {
+                "hole_number": 15,
+                "terrain_description": "Beautiful and challenging par 4 with a tee shot over water and an approach to a narrow green.",
+                "strategic_tips": "Clear the water off the tee with confidence, then focus on hitting the narrow green. Missing wide leaves difficult up-and-down opportunities.",
+                "green_details": "Narrow green that demands an accurate approach."
+            }
+        ]
+    },
+    {
+        "course_name": "Mystic Creek Golf Club",
+        "description": "27-hole facility inside Camp Dearborn with three distinct nines: Meadows, Woods, and Lakes. A \"hidden gem\" offering a resort-style experience within 30 minutes of Detroit and Ann Arbor.",
+        "walkthrough_narrative": "Mystic Creek offers three completely different identities across its 27 holes. The Lakes nine features water on nearly every hole, creating constant tension off the tee. The Woods nine delivers rolling hills with 70-foot elevation drops and a wilderness feel. The Meadows nine is a traditional parkland layout with strategic bunkering.\n\nThe Lakes nine is well-maintained, though the cart GPS system can be overly sensitive, often forcing cart-path-only conditions even on dry days. Greens are medium-sized with moderate speed across the facility, with one notable exception: Woods hole 3 features the fastest green on the property, consistently measuring 11-plus on the stimpmeter.\n\nAccuracy trumps distance on both the Lakes and Woods nines. Hazards are positioned at driver length on several holes, meaning the big stick can actually hurt more than it helps. For a budget-friendly experience, \"Mystic Mondays\" offers a $20 rate that is hard to beat.\n\nThe terrain ranges dramatically from flat wetlands to extreme forest ridges across the sprawling property. Each nine feels like a completely different course.\n\nFall views from the Woods elevated tees are among the best in Oakland County, making autumn rounds here a visual treat.\n\nThe range uses mats only. Park on the far west end of the lot to avoid stray range balls hitting your vehicle. Note that a Camp Dearborn entry fee is required, but it is usually reimbursed with your golf receipt.",
+        "holes": [
+            {
+                "hole_number": 1,
+                "terrain_description": "Lakes nine opener. Intimidating start requiring a 180-200 yard lay-up to avoid the lake, with an almost all-carry approach to the green.",
+                "strategic_tips": "Lay up to 180-200 yards to avoid the lake. The approach to the green is almost entirely carry, so take enough club to clear the hazard."
+            },
+            {
+                "hole_number": 6,
+                "terrain_description": "Lakes nine. Toughest par 3 in the area at 241 yards from the tips with 75% of the shot carrying over water.",
+                "strategic_tips": "This is 241 yards from the tips with a massive forced carry over water. Play to whatever tee gives you a comfortable carry distance and aim for the safe side of the green."
+            },
+            {
+                "hole_number": 8,
+                "elevation_description": "Tee shot from a 200-foot elevated tee box.",
+                "terrain_description": "Lakes nine signature hole. Tee shot from a dramatically elevated box over a large lake.",
+                "strategic_tips": "Enjoy the view but trust your yardage — the 200-foot elevation drop will add significant distance to whatever club you choose. Club down accordingly."
+            }
+        ]
+    },
+    {
+        "course_name": "Rouge Park Golf Course",
+        "description": "Flagship of the Detroit municipal system. Budget-friendly layout following the Rouge River, widely considered the \"best city course\" for affordable rounds with a laid-back atmosphere.",
+        "walkthrough_narrative": "Rouge Park is a \"no-frills muni\" but is surprisingly challenging due to significant elevation changes along the Rouge River basin. There is a rare sense of isolation from the city once you are on the course, making it feel like an escape despite its urban location.\n\nConditions have historically been inconsistent, with poor drainage leading to muddy conditions after rain. However, the course has reportedly improved since 2022 under new management, with better maintenance practices beginning to show results.\n\nRouge Park is a high-value track for practicing short-game accuracy. As a municipal course, crowds can be large but the atmosphere is relaxed and welcoming.\n\nThe terrain is hilly with elevation shifts concentrated around the river basin. The course is walking-friendly, though most players prefer carts for the back nine hills.\n\nAvoid playing immediately after heavy rain — drainage is still insufficient for the river basin topography, and conditions deteriorate rapidly when the ground is saturated.\n\nRounds run $20-25, with especially good value on Friday afternoons. The course is fully fenced to address historical wildlife and dog issues that previously affected play.",
+        "holes": [
+            {
+                "hole_number": 16,
+                "terrain_description": "Unique 120-yard par 3 with a blind tee shot over the Rouge River.",
+                "strategic_tips": "Trust the yardage on this blind 120-yard shot over the river. The green is large and receptive once you clear the bank — just pick your club and commit.",
+                "green_details": "Large and receptive green beyond the river bank."
+            }
+        ]
+    },
+    {
+        "course_name": "Rackham Golf Course",
+        "description": "Historic Donald Ross-designed municipal course adjacent to the Detroit Zoo. Cherished by purists for its architectural heritage but criticized for pace of play and drainage issues.",
+        "walkthrough_narrative": "Rackham carries a \"distinguished muni\" vibe anchored by its Donald Ross pedigree and signature \"turtleback\" greens. It is a local favorite among architecture enthusiasts, though the reality of weekend play can be a \"slog\" with rounds stretching well beyond five hours.\n\nConditions are famously \"seasonal.\" The course floods easily and is nearly unplayable after significant rainfall. The greens are kept in decent shape to preserve the Ross design character, and those turtleback putting surfaces are the defining feature of every approach shot.\n\nExpect 5 to 6 hour rounds on weekends. The strategic challenge at Rackham is entirely in the green complexes — being above the hole is a guaranteed three-putt. Every approach must be calibrated to leave the ball below the cup.\n\nThe terrain is mostly flat with subtle Ross-style mounding that creates more challenge than the naked eye suggests. This is the most walking-friendly course in the metro area.\n\nMany discerning regulars treat Rackham as a \"summer-only\" course due to the lack of modern drainage infrastructure. The experience is best enjoyed during dry stretches in the heart of the season.\n\nThe course offers tremendous value during off-peak times. It is one of the few places where you can play a genuine Donald Ross layout for a municipal fee. Several holes back up to the Detroit Zoo, and you can sometimes hear the animals during your round.",
+        "holes": []
+    },
+    {
+        "course_name": "Stonebridge Golf Club",
+        "description": "Arthur Hills-designed championship course consistently ranked as a top-10 public track in the metro area. Known for lush turf and high-quality maintenance.",
+        "walkthrough_narrative": "Stonebridge delivers \"private club quality\" at a public price, making it a popular choice for competitive league play and upscale weddings. The Arthur Hills design extracts every ounce of challenge from the property's mix of woods and water.\n\nThe course features \"extraordinary upkeep\" from tee to green. The greens are known for complex grain that grows toward the setting sun, adding significant difficulty to putting. When putting against the grain, expect putts to play 25 to 50 percent slower than they appear.\n\nThe primary strategic key is to aim for the 150-yard stakes on doglegs, setting up manageable approach shots rather than trying to cut corners. Always account for grain when reading putts — it is one of the most underestimated factors at Stonebridge.\n\nThe terrain features a mix of woods and water with several forced carries over wetlands that demand confident ball-striking.\n\nThe course is particularly popular in late spring during Ann Arbor's blooming season, when the landscaping and natural flora add a stunning visual dimension to the round.\n\nA full-service driving range is available along with custom yardage books. The professional pro shop and banquet services round out a facility that punches well above its public-course weight class.",
+        "holes": [
+            {
+                "hole_number": 1,
+                "terrain_description": "Dogleg right par 4 with water 70 yards short of the green.",
+                "strategic_tips": "Aim for the 150-yard marker off the tee. Be aware of the water hazard 70 yards short of the green when selecting your approach club.",
+                "green_slope": "Two-tiered green that slopes toward the water hazard.",
+                "green_details": "Two-tiered green with slope toward the hazard."
+            },
+            {
+                "hole_number": 2,
+                "terrain_description": "Par 4 with a blind tee shot.",
+                "strategic_tips": "Aim for the two trees on the right side of the fairway off the tee. This line leaves an approach under 125 yards to the green."
+            },
+            {
+                "hole_number": 15,
+                "terrain_description": "Short par 4 with a second shot over water.",
+                "strategic_tips": "Take advantage of the short length but respect the water guarding the green. Missing long or right finds the hazard.",
+                "green_slope": "Relatively flat compared to other greens on the course.",
+                "green_details": "Relatively flat green, but long and right misses find the water hazard."
+            },
+            {
+                "hole_number": 18,
+                "terrain_description": "Tough finishing par 4, dogleg right with a creek guarding the green.",
+                "strategic_tips": "Navigate the dogleg right carefully and set up an approach that avoids the creek fronting the green. This is the hardest green on the course.",
+                "green_slope": "Slopes severely left to right — the hardest green on the course.",
+                "green_details": "Hardest green on the course with severe left-to-right slope and creek guarding the front."
+            }
+        ]
+    },
+    {
+        "course_name": "Fox Hills Golf & Banquet Center",
+        "description": "63-hole destination including links-style Golden Fox, traditional 27-hole Fox Classic, and the par-3 Strategic Fox. The most versatile facility in the region.",
+        "walkthrough_narrative": "Fox Hills offers three distinct experiences under one umbrella. The Golden Fox is a challenging links-style layout with large mounds and undulating greens. The Strategic Fox, designed by Ray Hearn, is a par-3 course purpose-built for short game development. The Fox Classic is a historic 27-hole layout anchored by a 1927 log cabin clubhouse that was renovated in 2008.\n\nGreens roll true across all courses and get progressively faster from Strategic Fox to Fox Classic to Golden Fox. The Golden Fox is the best-maintained course on the property.\n\nAt Golden Fox, trust the GPS over visual estimates — the mounding and links-style terrain create deceptive distances that fool the eye consistently. The Fox Classic \"Woodlands\" nine is the tightest stretch on the property and demands exceptional accuracy through dense tree-lined corridors.\n\nThe terrain ranges from flat, open links at Golden Fox to dense, hilly woods on the Classic Woodlands nine, giving players dramatically different experiences depending on which course they choose.\n\nPace of play at Golden Fox on weekends is \"atrocious,\" often stretching to 5.5 hours or more. Plan accordingly and consider weekday play if schedule permits.\n\nFox Classic players should note that they must drive to the Golden Fox facility to use the range. The historic 1927 log cabin clubhouse was renovated in 2008 and adds a unique charm to the Classic experience.",
+        "holes": [
+            {
+                "hole_number": 9,
+                "terrain_description": "Golden Fox par 4 with a large hickory tree sitting in the middle of the fairway approximately 40 yards short of the green.",
+                "strategic_tips": "Lay up short of the hickory tree in the middle of the fairway to leave yourself a clear look at the green. Trying to go over or around the tree from close range leads to trouble."
+            },
+            {
+                "hole_number": 15,
+                "terrain_description": "Golden Fox dogleg right par 4 with a blind approach to a green sitting well below fairway level.",
+                "strategic_tips": "Favor the left side off the tee to open up the dogleg. The blind approach plays downhill to a green well below fairway level — take less club than you think.",
+                "elevation_description": "Green sits well below fairway level."
+            }
+        ]
+    },
+    {
+        "course_name": "Links of Novi",
+        "description": "27-hole facility with East, West, and South nines. A \"quirky\" but fun layout delivering a Northern Michigan feel in the western suburbs.",
+        "walkthrough_narrative": "Links of Novi offers three nines with distinct personalities. The South nine is wide-open links-style golf. The East nine is more difficult with narrow fairways and significant elevation changes, making it the preferred routing among local regulars. The overall feel is \"Pulte-style\" residential golf, but quality remains high despite the housing development surroundings.\n\nThe course is generally in \"awesome shape\" even into late October. Spring can bring muddy conditions, but the maintenance crew keeps things playable through much of the shoulder season.\n\nThe GPS pace-timer at Links of Novi is notoriously strict. Groups are warned when even 4 to 5 minutes behind pace, and the threat of being asked to skip a hole is real. Play the South nine for a relaxed round; the East nine demands accuracy with the driver.\n\nThe terrain is hilly and carved through housing developments. Carts are recommended due to the distances between tees across the nines.\n\nSummer rates are \"ridiculous\" — locals recommend playing in the off-season when rates drop significantly and conditions are still solid.\n\nThe clubhouse service is highly rated, with bartenders who actually check on patio guests during slow periods — a small touch that regulars appreciate.",
+        "holes": []
+    },
+    {
+        "course_name": "Tanglewood Golf Course",
+        "description": "Popular 27-hole facility that takes the driver out of the player's hand due to its tight layout and strategic bunkering. A local favorite for league play.",
+        "walkthrough_narrative": "Tanglewood features three nines with some genuinely unique holes that reward course knowledge. The layout is challenging but fair for mid-handicappers, and the friendly atmosphere is geared toward frequent local players who know every break and bunker.\n\nConditions are generally well-maintained, though the heavy league play volume can cause tee box and green wear later in the day. Playing in the morning yields the best conditions.\n\nDistance is the enemy on several holes at Tanglewood. Iron shots off the tee are needed for narrow landing windows on multiple par 4s. Being 150 yards out in the fairway is much better than 80 yards out in thick primary rough. Leave the driver in the bag more often than not.\n\nThe terrain is rolling with significant tree-lining that frames the tight corridors and adds visual beauty to the shotmaking demands.\n\nEvening league play is a major part of the culture at Tanglewood — it is great for social golf but makes it hard to find a fast weekday evening round during the season.\n\nThe clubhouse is well-equipped for large groups and outings, supporting the facility's identity as a community gathering place for golfers.",
+        "holes": []
+    },
+    {
+        "course_name": "Fieldstone Golf Club",
+        "description": "Arthur Hills-designed municipal course rivaling the quality of high-end private clubs. Known for its challenging back nine and proximity to Chrysler headquarters.",
+        "walkthrough_narrative": "Fieldstone presents a split personality: the front nine is relatively \"simple,\" lulling players into a false sense of security before the back nine turns \"ridiculously tough.\" The course carries an upscale corporate track vibe, frequently used for business outings by nearby companies.\n\nConsistently rated as one of the best-maintained municipal courses in the state, Fieldstone delivers conditions that belie its public-course pricing. The Arthur Hills design makes intelligent use of the rolling terrain, mixing open areas with dense woods.\n\nThe smart strategy is to build your score on the front nine before the difficulty ramps up dramatically on the back. The back nine requires extreme precision over forced carries that can quickly erase a good front-nine score.\n\nThe terrain is rolling with a mix of open areas and dense woods, creating visual variety and strategic diversity throughout the round. Hole 9 is a standout — its picturesque view is admired even by I-75 commuters stuck in traffic.\n\nPricing is considered a bargain compared to courses of similar quality in other major cities, making Fieldstone one of the best values in Michigan public golf.",
+        "holes": []
+    }
+]
