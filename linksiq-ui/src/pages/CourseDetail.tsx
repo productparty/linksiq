@@ -22,6 +22,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { fetchCourse, fetchCourseHoles } from "../api/courses";
 import { FavoriteButton } from "../components/FavoriteButton";
+import { CourseLocationMap } from "../components/maps";
 import type { Hole } from "../types/course";
 
 function holeHasIntel(hole: Hole): boolean {
@@ -249,6 +250,19 @@ export function CourseDetail() {
           </Paper>
         )}
       </Box>
+
+      {/* Course Location Map */}
+      {course.latitude != null && course.longitude != null && (
+        <Box sx={{ my: 3 }}>
+          <CourseLocationMap
+            latitude={course.latitude}
+            longitude={course.longitude}
+            courseName={course.name}
+            city={course.city}
+            state={course.state}
+          />
+        </Box>
+      )}
 
       <Divider sx={{ my: 3 }} />
 
