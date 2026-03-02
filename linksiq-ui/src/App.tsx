@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { Analytics } from "@vercel/analytics/react";
 import theme from "./theme";
 import { AuthProvider } from "./context/AuthContext";
 import { FavoritesProvider } from "./context/FavoritesContext";
@@ -65,6 +66,7 @@ export default function App() {
           </AuthProvider>
         </QueryClientProvider>
       </ThemeProvider>
+      <Analytics />
     </ErrorBoundary>
   );
 }
