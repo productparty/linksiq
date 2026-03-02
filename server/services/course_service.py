@@ -5,18 +5,29 @@ from uuid import UUID
 from db.connection import get_cursor
 
 
+SORT_OPTIONS = {
+    "name": "c.name",
+    "yardage": "c.total_yardage DESC NULLS LAST",
+    "par": "c.total_par DESC NULLS LAST",
+    "rating": "c.course_rating DESC NULLS LAST",
+    "slope": "c.slope_rating DESC NULLS LAST",
+}
+
+
 def list_courses(
     state: Optional[str] = None,
     search: Optional[str] = None,
+    has_intel: Optional[bool] = None,
+    sort: Optional[str] = None,
     page: int = 1,
     per_page: int = 20,
 ) -> dict:
-    """List courses with optional state filter and name search, paginated."""
+    """List courses with optional filters, sorting, and pagination."""
     per_page = min(per_page, 100)
     offset = (page - 1) * per_page
 
     conditions = []
-    params = []
+    params: list = []
 
     if state:
         conditions.append("c.state = %s")
@@ -26,9 +37,20 @@ def list_courses(
         conditions.append("to_tsvector('english', c.name) @@ plainto_tsquery('english', %s)")
         params.append(search)
 
+    if has_intel is True:
+        conditions.append("""
+            EXISTS (
+                SELECT 1 FROM public.holes h
+                WHERE h.course_id = c.id
+                AND (h.strategic_tips IS NOT NULL OR h.green_details IS NOT NULL)
+            )
+        """)
+
     where_clause = ""
     if conditions:
         where_clause = "WHERE " + " AND ".join(conditions)
+
+    order_by = SORT_OPTIONS.get(sort, "c.name")
 
     # Get total count
     with get_cursor() as cur:
@@ -47,7 +69,7 @@ def list_courses(
             ) as has_detailed_holes
         FROM public.courses c
         {where_clause}
-        ORDER BY c.name
+        ORDER BY {order_by}
         LIMIT %s OFFSET %s
     """
     params.extend([per_page, offset])

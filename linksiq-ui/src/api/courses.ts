@@ -9,12 +9,16 @@ import type {
 export function fetchCourses(params: {
   state?: string;
   search?: string;
+  has_intel?: boolean;
+  sort?: string;
   page?: number;
   per_page?: number;
 }): Promise<CourseListResponse> {
   const query = new URLSearchParams();
   if (params.state) query.set("state", params.state);
   if (params.search) query.set("search", params.search);
+  if (params.has_intel !== undefined) query.set("has_intel", String(params.has_intel));
+  if (params.sort) query.set("sort", params.sort);
   if (params.page) query.set("page", String(params.page));
   if (params.per_page) query.set("per_page", String(params.per_page));
   return api.get(`/api/courses?${query}`);

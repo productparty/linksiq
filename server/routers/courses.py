@@ -19,12 +19,16 @@ async def list_courses(
     request: Request,
     state: Optional[str] = Query(None, description="Filter by state abbreviation (e.g. MI)"),
     search: Optional[str] = Query(None, description="Full-text search on course name"),
+    has_intel: Optional[bool] = Query(None, description="Filter to courses with enriched hole data"),
+    sort: Optional[str] = Query(None, description="Sort field: name, yardage, par, rating, slope"),
     page: int = Query(1, ge=1),
     per_page: int = Query(20, ge=1, le=100),
 ):
     result = course_service.list_courses(
         state=state,
         search=search,
+        has_intel=has_intel,
+        sort=sort,
         page=page,
         per_page=per_page,
     )
