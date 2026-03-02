@@ -69,8 +69,6 @@ export async function fetchCourses(params: {
 
   let { data, count, error } = await query;
 
-  console.log("[fetchCourses] response:", { data, count, error });
-
   // Fallback: if text search failed (e.g. bad tsquery), retry with ilike
   if (error && params.search) {
     const fallback = supabase
