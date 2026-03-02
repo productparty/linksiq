@@ -3,32 +3,32 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1a2332",
-      light: "#2d3a4a",
-      dark: "#0f1620",
+      main: "#1B4332",
+      light: "#2D6A4F",
+      dark: "#0F2B1F",
       contrastText: "#ffffff",
     },
     secondary: {
-      main: "#2d8a6e",
-      light: "#3da882",
-      dark: "#1e6b54",
-      contrastText: "#ffffff",
+      main: "#D4A843",
+      light: "#E0C068",
+      dark: "#B8922E",
+      contrastText: "#1A1A1A",
     },
     background: {
-      default: "#f8f9fa",
+      default: "#F8F9FA",
       paper: "#ffffff",
     },
     text: {
-      primary: "#1a1a1a",
-      secondary: "#5a6577",
+      primary: "#1A1A1A",
+      secondary: "#6B7280",
     },
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     h1: { fontWeight: 700, letterSpacing: "-0.02em" },
     h2: { fontWeight: 700, letterSpacing: "-0.01em" },
-    h3: { fontWeight: 600 },
-    h4: { fontWeight: 600 },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 700 },
     h5: { fontWeight: 600 },
     h6: { fontWeight: 600 },
     body1: { lineHeight: 1.7 },
@@ -43,6 +43,7 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           fontWeight: 600,
+          borderRadius: 8,
         },
       },
     },
@@ -57,6 +58,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
         },
       },
     },

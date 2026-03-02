@@ -32,7 +32,7 @@ export function Header() {
             fontWeight: 700,
           }}
         >
-          Links<span style={{ color: "#2d8a6e" }}>IQ</span>
+          Links<span style={{ color: "#D4A843" }}>IQ</span>
         </Typography>
 
         {/* Desktop nav */}

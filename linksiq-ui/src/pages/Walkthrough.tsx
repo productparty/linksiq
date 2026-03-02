@@ -10,64 +10,16 @@ import {
   Divider,
   Button,
   Chip,
+  Grid,
 } from "@mui/material";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import TerrainIcon from "@mui/icons-material/Terrain";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import FlagIcon from "@mui/icons-material/Flag";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import SportsGolfIcon from "@mui/icons-material/SportsGolf";
-import LandscapeIcon from "@mui/icons-material/Landscape";
 import { fetchCourseGuide } from "../api/courses";
 import { YardageTable } from "../components/YardageTable";
 import { CourseGuidePdf } from "../components/CourseGuide";
 import type { Hole } from "../types/course";
-
-function NarrativeText({ text }: { text: string }) {
-  const paragraphs = text.split(/\n\n|\n/).filter((p) => p.trim());
-  return (
-    <>
-      {paragraphs.map((p, i) => (
-        <Typography key={i} variant="body1" sx={{ mb: 2 }}>
-          {p.trim()}
-        </Typography>
-      ))}
-    </>
-  );
-}
-
-function HoleIntelSection({
-  icon,
-  label,
-  text,
-  color,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  text: string;
-  color: string;
-}) {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 1.5,
-        p: 1.5,
-        borderRadius: 1,
-        bgcolor: color,
-        mb: 1,
-      }}
-    >
-      <Box sx={{ color: "text.secondary", mt: 0.25, flexShrink: 0 }}>{icon}</Box>
-      <Box>
-        <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: 0.5, color: "text.secondary" }}>
-          {label}
-        </Typography>
-        <Typography variant="body2" sx={{ mt: 0.25 }}>
-          {text}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
 
 function hasIntel(hole: Hole): boolean {
   return !!(
@@ -77,6 +29,72 @@ function hasIntel(hole: Hole): boolean {
     hole.green_slope ||
     hole.green_speed_range ||
     hole.green_details
+  );
+}
+
+function IntelCard({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
+        <Box sx={{ color: "primary.light" }}>{icon}</Box>
+        <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
+          {title}
+        </Typography>
+      </Box>
+      <Typography variant="body2" color="text.secondary">
+        {text}
+      </Typography>
+    </Paper>
+  );
+}
+
+function LocalTipCallout({ text }: { text: string }) {
+  return (
+    <Paper
+      sx={{
+        p: 2.5,
+        mt: 2,
+        bgcolor: "rgba(212, 168, 67, 0.1)",
+        border: "1px solid rgba(212, 168, 67, 0.3)",
+        borderRadius: 2,
+      }}
+    >
+      <Box sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
+        <Box
+          sx={{
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            bgcolor: "secondary.main",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <LightbulbIcon sx={{ color: "white", fontSize: 20 }} />
+        </Box>
+        <Box>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontWeight: 700, color: "secondary.dark", mb: 0.5 }}
+          >
+            Local Tip
+          </Typography>
+          <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+            {text}
+          </Typography>
+        </Box>
+      </Box>
+    </Paper>
   );
 }
 
@@ -107,7 +125,6 @@ export function Walkthrough() {
     );
   }
 
-  // PDF download
   if (showPdf) {
     return (
       <Container maxWidth="md" sx={{ py: 4, textAlign: "center" }}>
@@ -119,153 +136,202 @@ export function Walkthrough() {
     );
   }
 
-  const greenInfo = (hole: Hole) => {
-    const parts = [hole.green_slope, hole.green_speed_range, hole.green_details].filter(Boolean);
-    return parts.join(" ");
-  };
-
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
-      {/* Course header */}
-      <Box sx={{ mb: 4 }}>
+      {/* Header */}
+      <Box sx={{ mb: 1 }}>
+        <Typography
+          variant="overline"
+          sx={{ color: "primary.light", letterSpacing: 2, fontWeight: 700 }}
+        >
+          Full Course Scouting Report
+        </Typography>
         <Typography variant="h4" sx={{ fontWeight: 700 }}>
           {guide.name}
         </Typography>
-        <Typography variant="body1" color="text.secondary" gutterBottom>
+        <Typography variant="body1" color="text.secondary">
           {[guide.city, guide.state].filter(Boolean).join(", ")}
         </Typography>
-        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mt: 1, mb: 2 }}>
-          {guide.total_par && <Chip label={`Par ${guide.total_par}`} size="small" />}
-          {guide.total_yardage && (
-            <Chip label={`${guide.total_yardage.toLocaleString()} yds`} size="small" variant="outlined" />
-          )}
-          {guide.slope_rating && (
-            <Chip label={`Slope ${guide.slope_rating}`} size="small" variant="outlined" />
-          )}
-          {guide.course_rating && (
-            <Chip label={`Rating ${guide.course_rating}`} size="small" variant="outlined" />
-          )}
-        </Box>
-        <Button
-          variant="contained"
-          startIcon={<PictureAsPdfIcon />}
-          onClick={() => window.location.search = "?pdf=1"}
-        >
-          Download PDF Guide
-        </Button>
       </Box>
 
-      {/* Course narrative — description first, then walkthrough */}
-      {guide.description && (
-        <Paper sx={{ p: 3, mb: 3, bgcolor: "primary.main", color: "primary.contrastText" }}>
-          <Typography variant="body1" sx={{ fontStyle: "italic", lineHeight: 1.8 }}>
-            {guide.description}
-          </Typography>
-        </Paper>
+      {/* Stat boxes */}
+      <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap", my: 3 }}>
+        {guide.total_par && (
+          <Paper variant="outlined" sx={{ px: 3, py: 1.5, textAlign: "center" }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "text.secondary", fontSize: "0.65rem" }}>Par</Typography>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>{guide.total_par}</Typography>
+          </Paper>
+        )}
+        {guide.num_holes && (
+          <Paper variant="outlined" sx={{ px: 3, py: 1.5, textAlign: "center" }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "text.secondary", fontSize: "0.65rem" }}>Holes</Typography>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>{guide.num_holes}</Typography>
+          </Paper>
+        )}
+        {guide.total_yardage && (
+          <Paper variant="outlined" sx={{ px: 3, py: 1.5, textAlign: "center" }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "text.secondary", fontSize: "0.65rem" }}>Yardage</Typography>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>{guide.total_yardage.toLocaleString()}y</Typography>
+          </Paper>
+        )}
+        {guide.slope_rating && (
+          <Paper variant="outlined" sx={{ px: 3, py: 1.5, textAlign: "center" }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "text.secondary", fontSize: "0.65rem" }}>Slope</Typography>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>{guide.slope_rating}</Typography>
+          </Paper>
+        )}
+        {guide.course_rating && (
+          <Paper variant="outlined" sx={{ px: 3, py: 1.5, textAlign: "center" }}>
+            <Typography variant="caption" sx={{ fontWeight: 600, textTransform: "uppercase", letterSpacing: 1, color: "text.secondary", fontSize: "0.65rem" }}>Rating</Typography>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>{guide.course_rating}</Typography>
+          </Paper>
+        )}
+      </Box>
+
+      <Button
+        variant="outlined"
+        startIcon={<PictureAsPdfIcon />}
+        onClick={() => (window.location.search = "?pdf=1")}
+        sx={{ mb: 3 }}
+      >
+        Download PDF Guide
+      </Button>
+
+      {/* Course Character / Strategic Overview */}
+      {(guide.description || guide.walkthrough_narrative) && (
+        <>
+          <Divider sx={{ my: 3 }} />
+          {guide.description && (
+            <Box sx={{ mb: 3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+                Course Character
+              </Typography>
+              <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
+                {guide.description}
+              </Typography>
+            </Box>
+          )}
+          {guide.walkthrough_narrative && (
+            <Box sx={{ mb: 3 }}>
+              {!guide.description && (
+                <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+                  Course Character
+                </Typography>
+              )}
+              {guide.walkthrough_narrative
+                .split(/\n\n|\n/)
+                .filter((p) => p.trim())
+                .map((p, i) => (
+                  <Typography key={i} variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
+                    {p.trim()}
+                  </Typography>
+                ))}
+            </Box>
+          )}
+        </>
       )}
 
-      {guide.walkthrough_narrative && (
-        <Paper sx={{ p: 3, mb: 4 }} variant="outlined">
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
-            Course Intelligence
-          </Typography>
-          <NarrativeText text={guide.walkthrough_narrative} />
-        </Paper>
-      )}
+      <Divider sx={{ my: 4 }} />
 
-      <Divider sx={{ mb: 4 }} />
-
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 3 }}>
-        Hole-by-Hole Guide
-      </Typography>
-
-      {/* All holes in sequence */}
+      {/* Hole-by-hole */}
       {guide.holes.map((hole) => {
         const intel = hasIntel(hole);
+        const teeText = (hole: Hole) => {
+          const parts = [];
+          if (hole.elevation_description) parts.push(hole.elevation_description);
+          if (hole.terrain_description) parts.push(hole.terrain_description);
+          return parts.join(" ");
+        };
+        const greenText = (hole: Hole) => {
+          const parts = [hole.green_slope, hole.green_speed_range, hole.green_details].filter(Boolean);
+          return parts.join(" ");
+        };
+
         return (
-          <Paper
-            key={hole.hole_number}
-            sx={{
-              p: 3,
-              mb: 3,
-              borderLeft: intel ? "4px solid" : undefined,
-              borderLeftColor: intel ? "secondary.main" : undefined,
-            }}
-            variant="outlined"
-          >
+          <Box key={hole.hole_number} sx={{ mb: 5 }}>
             {/* Hole header */}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                mb: 2,
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "baseline", gap: 1.5 }}>
-                <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                  {hole.hole_number}
-                </Typography>
-                <Chip label={`Par ${hole.par}`} size="small" />
-                {hole.handicap_rating && (
-                  <Chip
-                    label={`HCP ${hole.handicap_rating}`}
-                    size="small"
-                    variant="outlined"
-                  />
-                )}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
+              <Box
+                sx={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: "50%",
+                  bgcolor: intel ? "primary.main" : "grey.200",
+                  color: intel ? "white" : "text.secondary",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontWeight: 700,
+                  fontSize: "1.25rem",
+                  flexShrink: 0,
+                }}
+              >
+                {hole.hole_number}
               </Box>
-              {intel && (
-                <Chip
-                  label="Intel"
-                  size="small"
-                  color="secondary"
-                  variant="outlined"
-                  sx={{ fontWeight: 600, fontSize: "0.7rem" }}
-                />
-              )}
+              <Box sx={{ flex: 1 }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                    Par {hole.par}
+                  </Typography>
+                  {hole.handicap_rating && (
+                    <Chip
+                      label={`Handicap ${hole.handicap_rating}`}
+                      size="small"
+                      variant="outlined"
+                      sx={{ fontSize: "0.7rem" }}
+                    />
+                  )}
+                  {intel && (
+                    <Chip
+                      label="INTEL"
+                      size="small"
+                      sx={{
+                        bgcolor: "secondary.main",
+                        color: "secondary.contrastText",
+                        fontWeight: 700,
+                        fontSize: "0.65rem",
+                        height: 20,
+                      }}
+                    />
+                  )}
+                </Box>
+              </Box>
             </Box>
 
+            {/* Tee yardages */}
             <YardageTable yardageByTee={hole.yardage_by_tee} />
 
-            {/* Intel sections */}
-            {intel && (
-              <Box sx={{ mt: 2 }}>
-                {hole.elevation_description && (
-                  <HoleIntelSection
-                    icon={<LandscapeIcon fontSize="small" />}
-                    label="Elevation"
-                    text={hole.elevation_description}
-                    color="rgba(45, 138, 110, 0.06)"
-                  />
+            {/* Intel grid — terrain + green cards */}
+            {(teeText(hole) || greenText(hole)) && (
+              <Grid container spacing={1.5} sx={{ mt: 1 }}>
+                {teeText(hole) && (
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    <IntelCard
+                      icon={<WarningAmberIcon fontSize="small" />}
+                      title="Terrain & Hazards"
+                      text={teeText(hole)}
+                    />
+                  </Grid>
                 )}
-                {hole.terrain_description && (
-                  <HoleIntelSection
-                    icon={<TerrainIcon fontSize="small" />}
-                    label="Terrain & Hazards"
-                    text={hole.terrain_description}
-                    color="rgba(26, 35, 50, 0.04)"
-                  />
+                {greenText(hole) && (
+                  <Grid size={{ xs: 12, sm: 6 }}>
+                    <IntelCard
+                      icon={<FlagIcon fontSize="small" />}
+                      title="The Green"
+                      text={greenText(hole)}
+                    />
+                  </Grid>
                 )}
-                {hole.strategic_tips && (
-                  <HoleIntelSection
-                    icon={<LightbulbIcon fontSize="small" />}
-                    label="Strategy"
-                    text={hole.strategic_tips}
-                    color="rgba(249, 168, 37, 0.08)"
-                  />
-                )}
-                {greenInfo(hole) && (
-                  <HoleIntelSection
-                    icon={<SportsGolfIcon fontSize="small" />}
-                    label="Green"
-                    text={greenInfo(hole)}
-                    color="rgba(45, 138, 110, 0.06)"
-                  />
-                )}
-              </Box>
+              </Grid>
             )}
-          </Paper>
+
+            {/* Local Tip — strategic advice in signature callout */}
+            {hole.strategic_tips && (
+              <LocalTipCallout text={hole.strategic_tips} />
+            )}
+
+            <Divider sx={{ mt: 3 }} />
+          </Box>
         );
       })}
     </Container>
