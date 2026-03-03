@@ -3,7 +3,7 @@ import Map, { Marker, Popup, NavigationControl } from 'react-map-gl/maplibre';
 import { Box, Link, Typography } from '@mui/material';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { OPENFREEMAP_STYLE, MAP_MARKER_COLOR, MAP_DEFAULT_ZOOM } from './constants';
+import { SATELLITE_STYLE, MAP_MARKER_COLOR, MAP_DEFAULT_ZOOM } from './constants';
 
 interface CourseLocationMapProps {
   latitude: number;
@@ -33,7 +33,7 @@ export default function CourseLocationMap({
             zoom: MAP_DEFAULT_ZOOM,
           }}
           style={{ width: '100%', height: '100%' }}
-          mapStyle={OPENFREEMAP_STYLE}
+          mapStyle={SATELLITE_STYLE}
           scrollZoom={false}
         >
           <NavigationControl position="top-right" />
