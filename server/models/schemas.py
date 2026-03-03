@@ -53,6 +53,7 @@ class CourseListItem(BaseModel):
     total_par: Optional[int] = None
     num_holes: Optional[int] = None
     total_yardage: Optional[int] = None
+    photo_url: Optional[str] = None
     has_detailed_holes: bool = False
 
 

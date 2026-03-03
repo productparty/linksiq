@@ -12,14 +12,14 @@ import {
   CardContent,
   Chip,
   Button,
-  Divider,
   Paper,
 } from "@mui/material";
 import MapIcon from "@mui/icons-material/Map";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LanguageIcon from "@mui/icons-material/Language";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import GridViewIcon from "@mui/icons-material/GridView";
 import { fetchCourse, fetchCourseHoles } from "../api/courses";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { CourseLocationMap } from "../components/maps";
@@ -40,7 +40,11 @@ export function CourseDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const { data: course, isLoading, error } = useQuery({
+  const {
+    data: course,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["course", id],
     queryFn: () => fetchCourse(id!),
     enabled: !!id,
@@ -72,33 +76,51 @@ export function CourseDetail() {
   const isPublic = courseType === "public";
   const isPrivate = courseType === "private";
 
-  // Find a notable hole for Pro Tip
   const proTipHole = holes?.find(
     (h) => h.strategic_tips && holeHasIntel(h),
   );
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* Header row */}
+      {/* Hero Info Section */}
       <Box
         sx={{
           display: "flex",
-          alignItems: "flex-start",
+          flexDirection: { xs: "column", lg: "row" },
           justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 2,
-          mb: 1,
+          alignItems: { lg: "flex-start" },
+          gap: 3,
+          mb: 4,
         }}
       >
-        <Box sx={{ flex: 1 }}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 0.5 }}>
-            <Typography variant="h4" sx={{ fontWeight: 700 }}>
+        <Box>
+          <Box
+            sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1 }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 900,
+                letterSpacing: "-0.02em",
+                lineHeight: 1,
+              }}
+            >
               {course.name}
             </Typography>
             <FavoriteButton courseId={course.id} />
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Typography variant="body1" color="text.secondary">
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Typography
+              variant="body1"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 0.5,
+                color: "text.secondary",
+                fontSize: "1.05rem",
+              }}
+            >
+              <LocationOnIcon sx={{ fontSize: 18 }} />
               {[course.city, course.state].filter(Boolean).join(", ")}
             </Typography>
             {(isPublic || isPrivate) && (
@@ -109,19 +131,21 @@ export function CourseDetail() {
                   bgcolor: isPublic ? "primary.main" : "grey.700",
                   color: "white",
                   fontWeight: 700,
-                  fontSize: "0.6rem",
-                  height: 22,
-                  letterSpacing: 0.5,
+                  fontSize: "0.55rem",
+                  height: 24,
+                  letterSpacing: 1,
+                  textTransform: "uppercase",
                 }}
               />
             )}
           </Box>
         </Box>
-        <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
+        <Box sx={{ display: "flex", gap: 2, flexShrink: 0 }}>
           <Button
             variant="outlined"
             startIcon={<PictureAsPdfIcon />}
             onClick={() => navigate(`/courses/${id}/walkthrough?pdf=1`)}
+            sx={{ height: 48, fontWeight: 700 }}
           >
             Download PDF Guide
           </Button>
@@ -130,6 +154,11 @@ export function CourseDetail() {
               variant="contained"
               startIcon={<MapIcon />}
               onClick={() => navigate(`/courses/${id}/walkthrough`)}
+              sx={{
+                height: 48,
+                fontWeight: 700,
+                boxShadow: "0 4px 14px rgba(26,66,49,0.3)",
+              }}
             >
               Walk the Course
             </Button>
@@ -137,161 +166,226 @@ export function CourseDetail() {
         </Box>
       </Box>
 
-      {/* Stat boxes */}
-      <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap", my: 3 }}>
+      {/* Stats Bar — white bordered cards */}
+      <Grid container spacing={2} sx={{ mb: 5 }}>
         {course.total_par && (
-          <Paper
-            variant="outlined"
-            sx={{ px: 3, py: 1.5, textAlign: "center", minWidth: 90 }}
-          >
-            <Typography
-              variant="caption"
+          <Grid size={{ xs: 6, md: "grow" }}>
+            <Paper
               sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "text.secondary",
-                fontSize: "0.65rem",
+                p: 3,
+                borderRadius: 3,
+                border: "1px solid",
+                borderColor: "divider",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               }}
             >
-              Par
-            </Typography>
-            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>
-              {course.total_par}
-            </Typography>
-          </Paper>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  color: "text.secondary",
+                  mb: 0.5,
+                }}
+              >
+                Par
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: "primary.main",
+                }}
+              >
+                {course.total_par}
+              </Typography>
+            </Paper>
+          </Grid>
         )}
         {course.num_holes && (
-          <Paper
-            variant="outlined"
-            sx={{ px: 3, py: 1.5, textAlign: "center", minWidth: 90 }}
-          >
-            <Typography
-              variant="caption"
+          <Grid size={{ xs: 6, md: "grow" }}>
+            <Paper
               sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "text.secondary",
-                fontSize: "0.65rem",
+                p: 3,
+                borderRadius: 3,
+                border: "1px solid",
+                borderColor: "divider",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               }}
             >
-              Holes
-            </Typography>
-            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>
-              {course.num_holes}
-            </Typography>
-          </Paper>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  color: "text.secondary",
+                  mb: 0.5,
+                }}
+              >
+                Holes
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: "primary.main",
+                }}
+              >
+                {course.num_holes}
+              </Typography>
+            </Paper>
+          </Grid>
         )}
         {course.total_yardage && (
-          <Paper
-            variant="outlined"
-            sx={{ px: 3, py: 1.5, textAlign: "center", minWidth: 90 }}
-          >
-            <Typography
-              variant="caption"
+          <Grid size={{ xs: 6, md: "grow" }}>
+            <Paper
               sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "text.secondary",
-                fontSize: "0.65rem",
+                p: 3,
+                borderRadius: 3,
+                border: "1px solid",
+                borderColor: "divider",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               }}
             >
-              Yardage
-            </Typography>
-            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>
-              {course.total_yardage.toLocaleString()}y
-            </Typography>
-          </Paper>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  color: "text.secondary",
+                  mb: 0.5,
+                }}
+              >
+                Yardage
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: "primary.main",
+                }}
+              >
+                {course.total_yardage.toLocaleString()}
+                <Typography
+                  component="span"
+                  sx={{ fontSize: "1rem", fontWeight: 400, ml: 0.5 }}
+                >
+                  y
+                </Typography>
+              </Typography>
+            </Paper>
+          </Grid>
         )}
         {course.slope_rating && (
-          <Paper
-            variant="outlined"
-            sx={{ px: 3, py: 1.5, textAlign: "center", minWidth: 90 }}
-          >
-            <Typography
-              variant="caption"
+          <Grid size={{ xs: 6, md: "grow" }}>
+            <Paper
               sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "text.secondary",
-                fontSize: "0.65rem",
+                p: 3,
+                borderRadius: 3,
+                border: "1px solid",
+                borderColor: "divider",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               }}
             >
-              Slope
-            </Typography>
-            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>
-              {course.slope_rating}
-            </Typography>
-          </Paper>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  color: "text.secondary",
+                  mb: 0.5,
+                }}
+              >
+                Slope
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: "primary.main",
+                }}
+              >
+                {course.slope_rating}
+              </Typography>
+            </Paper>
+          </Grid>
         )}
         {course.course_rating && (
-          <Paper
-            variant="outlined"
-            sx={{ px: 3, py: 1.5, textAlign: "center", minWidth: 90 }}
-          >
-            <Typography
-              variant="caption"
+          <Grid size={{ xs: 6, md: "grow" }}>
+            <Paper
               sx={{
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: 1,
-                color: "text.secondary",
-                fontSize: "0.65rem",
+                p: 3,
+                borderRadius: 3,
+                border: "1px solid",
+                borderColor: "divider",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
               }}
             >
-              Rating
-            </Typography>
-            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1 }}>
-              {course.course_rating}
-            </Typography>
-          </Paper>
+              <Typography
+                sx={{
+                  fontSize: "0.6rem",
+                  fontWeight: 700,
+                  textTransform: "uppercase",
+                  letterSpacing: 2,
+                  color: "text.secondary",
+                  mb: 0.5,
+                }}
+              >
+                Rating
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: "primary.main",
+                }}
+              >
+                {course.course_rating}
+              </Typography>
+            </Paper>
+          </Grid>
         )}
-      </Box>
+      </Grid>
 
-      {/* Course Location Map */}
-      {course.latitude != null && course.longitude != null && (
-        <Box sx={{ my: 3 }}>
-          <CourseLocationMap
-            latitude={course.latitude}
-            longitude={course.longitude}
-            courseName={course.name}
-            city={course.city}
-            state={course.state}
-          />
-        </Box>
-      )}
-
-      <Divider sx={{ my: 3 }} />
-
-      {/* Two-column: Course Character + Hole Quick Reference */}
-      <Grid container spacing={4}>
-        {/* Left column — Course Character */}
-        <Grid size={{ xs: 12, md: 6 }}>
+      {/* 3-column layout: 2 cols Course Character, 1 col Hole Quick Ref */}
+      <Grid container spacing={5}>
+        {/* Left — Course Character (2/3) */}
+        <Grid size={{ xs: 12, lg: 8 }}>
           {(course.description || course.walkthrough_narrative) && (
             <Box>
-              <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  mb: 3,
+                  borderLeft: "4px solid",
+                  borderColor: "secondary.main",
+                  pl: 2,
+                }}
+              >
                 Course Character
               </Typography>
               {course.description && (
-                <Paper
+                <Typography
+                  variant="body1"
                   sx={{
-                    p: 3,
-                    mb: 3,
-                    bgcolor: "primary.main",
-                    color: "primary.contrastText",
-                    borderRadius: 2,
+                    fontSize: "1.15rem",
+                    lineHeight: 1.8,
+                    fontWeight: 300,
+                    mb: 2,
                   }}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{ fontStyle: "italic", lineHeight: 1.8 }}
-                  >
-                    {course.description}
-                  </Typography>
-                </Paper>
+                  {course.description}
+                </Typography>
               )}
               {course.walkthrough_narrative &&
                 course.walkthrough_narrative
@@ -301,7 +395,12 @@ export function CourseDetail() {
                     <Typography
                       key={i}
                       variant="body1"
-                      sx={{ mb: 2, lineHeight: 1.8 }}
+                      sx={{
+                        fontSize: "1.15rem",
+                        lineHeight: 1.8,
+                        fontWeight: 300,
+                        mb: 2,
+                      }}
                     >
                       {p.trim()}
                     </Typography>
@@ -309,9 +408,31 @@ export function CourseDetail() {
             </Box>
           )}
 
+          {/* Map */}
+          {course.latitude != null && course.longitude != null && (
+            <Box
+              sx={{
+                mt: 4,
+                borderRadius: 3,
+                overflow: "hidden",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                border: "1px solid",
+                borderColor: "divider",
+              }}
+            >
+              <CourseLocationMap
+                latitude={course.latitude}
+                longitude={course.longitude}
+                courseName={course.name}
+                city={course.city}
+                state={course.state}
+              />
+            </Box>
+          )}
+
           {/* Contact info */}
           {(course.website_url || course.phone) && (
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: 4 }}>
               <Typography variant="h6" gutterBottom>
                 Contact
               </Typography>
@@ -337,7 +458,9 @@ export function CourseDetail() {
                 </Box>
               )}
               {course.phone && (
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                >
                   <PhoneIcon fontSize="small" color="action" />
                   <Typography variant="body2">{course.phone}</Typography>
                 </Box>
@@ -346,10 +469,20 @@ export function CourseDetail() {
           )}
         </Grid>
 
-        {/* Right column — Hole Quick Reference */}
+        {/* Right — Hole Quick Reference (1/3) */}
         {holes && holes.length > 0 && (
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          <Grid size={{ xs: 12, lg: 4 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 700,
+                mb: 3,
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+              }}
+            >
+              <GridViewIcon sx={{ color: "secondary.main" }} />
               Hole Quick Reference
             </Typography>
             <Grid container spacing={1}>
@@ -358,17 +491,19 @@ export function CourseDetail() {
                 const primaryYardage =
                   hole.yardage_by_tee?.tees?.[0]?.yardage;
                 return (
-                  <Grid
-                    key={hole.hole_number}
-                    size={{ xs: 4, sm: 4, md: 4 }}
-                  >
+                  <Grid key={hole.hole_number} size={{ xs: 4 }}>
                     <Card
-                      variant="outlined"
                       sx={{
-                        borderColor: intel
-                          ? "secondary.main"
-                          : "divider",
-                        borderWidth: intel ? 2 : 1,
+                        borderRadius: 2,
+                        border: intel ? "2px solid" : "1px solid",
+                        borderColor: intel ? "secondary.main" : "divider",
+                        boxShadow: "none",
+                        overflow: "hidden",
+                        position: "relative",
+                        transition: "box-shadow 0.2s",
+                        "&:hover": {
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+                        },
                       }}
                     >
                       <CardActionArea
@@ -376,40 +511,40 @@ export function CourseDetail() {
                         to={`/courses/${id}/holes/${hole.hole_number}`}
                       >
                         <CardContent
-                          sx={{
-                            textAlign: "center",
-                            py: 1.5,
-                            px: 1,
-                            position: "relative",
-                          }}
+                          sx={{ textAlign: "center", py: 1.5, px: 1 }}
                         >
                           {intel && (
-                            <Chip
-                              label="INTEL"
-                              size="small"
+                            <Box
                               sx={{
                                 position: "absolute",
-                                top: 4,
-                                right: 4,
+                                top: 0,
+                                right: 0,
                                 bgcolor: "secondary.main",
-                                color: "secondary.contrastText",
+                                color: "white",
+                                fontSize: "0.45rem",
                                 fontWeight: 700,
-                                fontSize: "0.5rem",
-                                height: 16,
-                                "& .MuiChip-label": { px: 0.75 },
+                                px: 0.5,
+                                lineHeight: 1.6,
                               }}
-                            />
+                            >
+                              INTEL
+                            </Box>
                           )}
                           <Typography
                             variant="caption"
-                            color="text.secondary"
-                            sx={{ fontWeight: 600 }}
+                            sx={{
+                              fontWeight: 700,
+                              color: "text.disabled",
+                            }}
                           >
                             #{hole.hole_number}
                           </Typography>
                           <Typography
                             variant="body2"
-                            sx={{ fontWeight: 700 }}
+                            sx={{
+                              fontWeight: 700,
+                              color: "primary.main",
+                            }}
                           >
                             P{hole.par}
                             {primaryYardage
@@ -424,59 +559,31 @@ export function CourseDetail() {
               })}
             </Grid>
 
-            {/* Pro Tip callout */}
+            {/* Pro Tip */}
             {proTipHole && (
               <Paper
                 sx={{
-                  p: 2.5,
+                  p: 2,
                   mt: 2,
-                  bgcolor: "rgba(212, 168, 67, 0.1)",
-                  border: "1px solid rgba(212, 168, 67, 0.3)",
+                  bgcolor: "rgba(26, 66, 49, 0.05)",
+                  border: "1px solid",
+                  borderColor: "rgba(26, 66, 49, 0.1)",
                   borderRadius: 2,
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 1.5,
-                    alignItems: "flex-start",
-                  }}
+                <Typography
+                  variant="body2"
+                  sx={{ fontStyle: "italic", color: "text.secondary" }}
                 >
-                  <Box
-                    sx={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: "50%",
-                      bgcolor: "secondary.main",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
+                  <Typography
+                    component="span"
+                    sx={{ fontWeight: 700, fontStyle: "normal" }}
                   >
-                    <LightbulbIcon
-                      sx={{ color: "white", fontSize: 18 }}
-                    />
-                  </Box>
-                  <Box>
-                    <Typography
-                      variant="subtitle2"
-                      sx={{
-                        fontWeight: 700,
-                        color: "secondary.dark",
-                        mb: 0.5,
-                      }}
-                    >
-                      Pro Tip — Hole {proTipHole.hole_number}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ fontStyle: "italic" }}
-                    >
-                      {proTipHole.strategic_tips}
-                    </Typography>
-                  </Box>
-                </Box>
+                    Pro Tip:
+                  </Typography>{" "}
+                  Hole {proTipHole.hole_number} —{" "}
+                  {proTipHole.strategic_tips}
+                </Typography>
               </Paper>
             )}
           </Grid>

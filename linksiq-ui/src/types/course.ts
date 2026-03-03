@@ -42,6 +42,7 @@ export interface CourseListItem {
   total_par: number | null;
   num_holes: number | null;
   total_yardage: number | null;
+  photo_url: string | null;
   has_detailed_holes: boolean;
 }
 

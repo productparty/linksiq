@@ -7,7 +7,7 @@ import type {
 } from "../types/course";
 
 const COURSE_LIST_COLUMNS =
-  "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, has_detailed_holes";
+  "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, photo_url, has_detailed_holes";
 
 const COURSE_DETAIL_COLUMNS =
   "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, slope_rating, course_rating, description, walkthrough_narrative, website_url, phone, latitude, longitude, source";

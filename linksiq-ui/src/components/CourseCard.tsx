@@ -7,6 +7,7 @@ import {
   Chip,
   Box,
 } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import type { CourseListItem } from "../types/course";
 
 interface Props {
@@ -19,112 +20,186 @@ export function CourseCard({ course }: Props) {
   const isPrivate = courseType === "private";
 
   return (
-    <Card variant="outlined">
+    <Card
+      sx={{
+        borderRadius: 3,
+        overflow: "hidden",
+        border: "1px solid",
+        borderColor: "divider",
+        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+        transition: "all 0.3s ease",
+        "&:hover": {
+          transform: "translateY(-4px)",
+          boxShadow: "0 12px 40px rgba(0,0,0,0.15)",
+        },
+      }}
+    >
       <CardActionArea component={RouterLink} to={`/courses/${course.id}`}>
-        <CardContent sx={{ p: 2.5 }}>
-          {/* Top row: badges */}
-          <Box sx={{ display: "flex", gap: 0.75, mb: 1.5 }}>
-            {(isPublic || isPrivate) && (
-              <Chip
-                label={isPublic ? "PUBLIC" : "PRIVATE"}
-                size="small"
+        {/* Card image area — real photo or gradient fallback */}
+        <Box
+          sx={{
+            height: course.photo_url ? 180 : 100,
+            bgcolor: "primary.main",
+            position: "relative",
+            overflow: "hidden",
+            ...(course.photo_url
+              ? {
+                  backgroundImage: `url(${course.photo_url})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  "& .card-hover-zoom": {
+                    transition: "transform 0.5s ease",
+                  },
+                }
+              : {
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    inset: 0,
+                    opacity: 0.1,
+                    backgroundImage:
+                      "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                    backgroundSize: "32px 32px",
+                  },
+                }),
+          }}
+        >
+          {/* PUBLIC/PRIVATE badge top-left */}
+          {(isPublic || isPrivate) && (
+            <Chip
+              label={isPublic ? "PUBLIC" : "PRIVATE"}
+              size="small"
+              sx={{
+                position: "absolute",
+                top: 12,
+                left: 12,
+                bgcolor: "rgba(26, 66, 49, 0.9)",
+                color: "white",
+                fontWeight: 800,
+                fontSize: "0.5rem",
+                height: 22,
+                letterSpacing: 1.5,
+                textTransform: "uppercase",
+              }}
+            />
+          )}
+          {/* IQ circle badge top-right */}
+          {course.has_detailed_holes && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 12,
+                right: 12,
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                bgcolor: "secondary.main",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+              }}
+            >
+              <Typography
                 sx={{
-                  bgcolor: isPublic ? "primary.main" : "grey.700",
                   color: "white",
-                  fontWeight: 700,
+                  fontWeight: 900,
                   fontSize: "0.6rem",
-                  height: 22,
-                  letterSpacing: 0.5,
                 }}
-              />
-            )}
-            {course.has_detailed_holes && (
-              <Chip
-                label="IQ"
-                size="small"
-                sx={{
-                  bgcolor: "secondary.main",
-                  color: "secondary.contrastText",
-                  fontWeight: 700,
-                  fontSize: "0.65rem",
-                  height: 22,
-                  minWidth: 32,
-                }}
-              />
-            )}
-          </Box>
+              >
+                IQ
+              </Typography>
+            </Box>
+          )}
+        </Box>
 
-          {/* Name + location */}
-          <Typography variant="h6" sx={{ fontWeight: 700, lineHeight: 1.3, mb: 0.5 }}>
+        <CardContent sx={{ p: 3 }}>
+          {/* Name */}
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700, lineHeight: 1.3, mb: 0.5 }}
+          >
             {course.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            {[course.city, course.state].filter(Boolean).join(", ")}
-          </Typography>
+          {/* Location */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, mb: 3 }}>
+            <LocationOnIcon sx={{ fontSize: 16, color: "text.secondary" }} />
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontWeight: 500 }}
+            >
+              {[course.city, course.state].filter(Boolean).join(", ")}
+            </Typography>
+          </Box>
 
-          {/* Stat row */}
+          {/* 3-column stat grid */}
           <Box
             sx={{
-              display: "flex",
-              gap: 3,
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr 1fr",
               borderTop: "1px solid",
               borderColor: "divider",
               pt: 1.5,
             }}
           >
             {course.total_par && (
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <Typography
-                  variant="caption"
                   sx={{
-                    fontWeight: 600,
+                    fontSize: "0.55rem",
+                    fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: 1,
-                    color: "text.secondary",
-                    fontSize: "0.6rem",
+                    letterSpacing: 1.5,
+                    color: "text.disabled",
                   }}
                 >
                   Par
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 700, lineHeight: 1 }}>
+                <Typography variant="body2" sx={{ fontWeight: 900 }}>
                   {course.total_par}
                 </Typography>
               </Box>
             )}
             {course.num_holes && (
-              <Box>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  borderLeft: "1px solid",
+                  borderRight: "1px solid",
+                  borderColor: "divider",
+                }}
+              >
                 <Typography
-                  variant="caption"
                   sx={{
-                    fontWeight: 600,
+                    fontSize: "0.55rem",
+                    fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: 1,
-                    color: "text.secondary",
-                    fontSize: "0.6rem",
+                    letterSpacing: 1.5,
+                    color: "text.disabled",
                   }}
                 >
                   Holes
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 700, lineHeight: 1 }}>
+                <Typography variant="body2" sx={{ fontWeight: 900 }}>
                   {course.num_holes}
                 </Typography>
               </Box>
             )}
             {course.total_yardage && (
-              <Box>
+              <Box sx={{ textAlign: "center" }}>
                 <Typography
-                  variant="caption"
                   sx={{
-                    fontWeight: 600,
+                    fontSize: "0.55rem",
+                    fontWeight: 700,
                     textTransform: "uppercase",
-                    letterSpacing: 1,
-                    color: "text.secondary",
-                    fontSize: "0.6rem",
+                    letterSpacing: 1.5,
+                    color: "text.disabled",
                   }}
                 >
                   Yardage
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 700, lineHeight: 1 }}>
+                <Typography variant="body2" sx={{ fontWeight: 900 }}>
                   {course.total_yardage.toLocaleString()}
                 </Typography>
               </Box>

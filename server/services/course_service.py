@@ -61,7 +61,7 @@ def list_courses(
     query = f"""
         SELECT
             c.id, c.name, c.club_name, c.city, c.state, c.course_type,
-            c.total_par, c.num_holes, c.total_yardage,
+            c.total_par, c.num_holes, c.total_yardage, c.photo_url,
             EXISTS (
                 SELECT 1 FROM public.holes h
                 WHERE h.course_id = c.id

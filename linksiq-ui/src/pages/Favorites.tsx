@@ -56,6 +56,7 @@ export function Favorites() {
                 total_par: fav.total_par,
                 num_holes: fav.num_holes,
                 total_yardage: null,
+                photo_url: null,
                 has_detailed_holes: false,
               }}
             />
