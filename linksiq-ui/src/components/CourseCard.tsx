@@ -205,6 +205,65 @@ export function CourseCard({ course }: Props) {
               </Box>
             )}
           </Box>
+
+          {/* Slope / Rating row */}
+          {(course.slope_rating != null || course.course_rating != null) && (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                borderTop: "1px solid",
+                borderColor: "divider",
+                mt: 1,
+                pt: 1.5,
+              }}
+            >
+              {course.slope_rating != null && (
+                <Box sx={{ textAlign: "center" }}>
+                  <Typography
+                    sx={{
+                      fontSize: "0.55rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: 1.5,
+                      color: "text.disabled",
+                    }}
+                  >
+                    Slope
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 900 }}>
+                    {course.slope_rating}
+                  </Typography>
+                </Box>
+              )}
+              {course.course_rating != null && (
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    ...(course.slope_rating != null && {
+                      borderLeft: "1px solid",
+                      borderColor: "divider",
+                    }),
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: "0.55rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: 1.5,
+                      color: "text.disabled",
+                    }}
+                  >
+                    Rating
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 900 }}>
+                    {course.course_rating}
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>

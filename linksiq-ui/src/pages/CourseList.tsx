@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
-  Container,
   Typography,
   TextField,
   Box,
@@ -16,248 +14,118 @@ import {
   Select,
   MenuItem,
   Grid,
+  Button,
+  Drawer,
+  IconButton,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import TuneIcon from "@mui/icons-material/Tune";
+import CloseIcon from "@mui/icons-material/Close";
 import { fetchCourses } from "../api/courses";
 import { CourseCard } from "../components/CourseCard";
-import { useDebounce } from "../hooks/useDebounce";
+import { CourseFilterPanel } from "../components/CourseFilterPanel";
+import { useCourseFilters } from "../hooks/useCourseFilters";
 
 const SORT_OPTIONS = [
-  { value: "name", label: "Name (A-Z)" },
-  { value: "yardage", label: "Yardage" },
-  { value: "par", label: "Par" },
-  { value: "rating", label: "Rating" },
-  { value: "slope", label: "Slope" },
+  { value: "name_asc", label: "Name (A-Z)" },
+  { value: "name_desc", label: "Name (Z-A)" },
+  { value: "rating_desc", label: "Rating (High-Low)" },
+  { value: "slope_desc", label: "Slope (High-Low)" },
+  { value: "yardage_desc", label: "Yardage (Long-Short)" },
+  { value: "yardage_asc", label: "Yardage (Short-Long)" },
 ];
 
 export function CourseList() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const stateFilter = searchParams.get("state") || "";
-  const initialSearch = searchParams.get("search") || "";
-  const [search, setSearch] = useState(initialSearch);
-  const [page, setPage] = useState(1);
-  const [intelOnly, setIntelOnly] = useState(false);
-  const [sort, setSort] = useState("name");
-  const debouncedSearch = useDebounce(search, 400);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const { filters, setFilters, clearAllFilters, activeFilterCount, apiParams } =
+    useCourseFilters();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", stateFilter, debouncedSearch, intelOnly, sort, page],
-    queryFn: () =>
-      fetchCourses({
-        state: stateFilter || undefined,
-        search: debouncedSearch || undefined,
-        has_intel: intelOnly ? true : undefined,
-        sort: sort !== "name" ? sort : undefined,
-        page,
-        per_page: 20,
-      }),
+    queryKey: ["courses", apiParams],
+    queryFn: () => fetchCourses(apiParams),
   });
 
-  const clearState = () => {
-    searchParams.delete("state");
-    setSearchParams(searchParams);
-    setPage(1);
-  };
+  // Build active filter chips
+  const chips: { key: string; label: string; onDelete: () => void }[] = [];
+  if (filters.state) {
+    chips.push({ key: "state", label: `State: ${filters.state}`, onDelete: () => setFilters({ state: "" }) });
+  }
+  if (filters.holes) {
+    chips.push({ key: "holes", label: `${filters.holes} Holes`, onDelete: () => setFilters({ holes: null }) });
+  }
+  if (filters.course_type) {
+    chips.push({ key: "type", label: filters.course_type, onDelete: () => setFilters({ course_type: "" }) });
+  }
+  if (filters.has_intel) {
+    chips.push({ key: "intel", label: "Has Intel", onDelete: () => setFilters({ has_intel: false }) });
+  }
+  if (filters.slope_min != null || filters.slope_max != null) {
+    const min = filters.slope_min ?? 93;
+    const max = filters.slope_max ?? 150;
+    chips.push({ key: "slope", label: `Slope: ${min}–${max}`, onDelete: () => setFilters({ slope_min: null, slope_max: null }) });
+  }
+  if (filters.rating_min != null || filters.rating_max != null) {
+    const min = filters.rating_min ?? 55;
+    const max = filters.rating_max ?? 77;
+    chips.push({ key: "rating", label: `Rating: ${min}–${max}`, onDelete: () => setFilters({ rating_min: null, rating_max: null }) });
+  }
+  if (filters.yardage_min != null || filters.yardage_max != null) {
+    const min = filters.yardage_min ?? 2400;
+    const max = filters.yardage_max ?? 7600;
+    chips.push({ key: "yardage", label: `Yardage: ${min.toLocaleString()}–${max.toLocaleString()}`, onDelete: () => setFilters({ yardage_min: null, yardage_max: null }) });
+  }
 
   return (
     <>
-      {/* Hero Banner */}
+      {/* Sticky search bar */}
       <Box
         sx={{
-          bgcolor: "primary.main",
-          color: "white",
-          pt: { xs: 6, md: 10 },
-          pb: { xs: 8, md: 12 },
-          px: 2,
-          position: "relative",
-          overflow: "hidden",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            inset: 0,
-            opacity: 0.1,
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-            backgroundSize: "40px 40px",
-            pointerEvents: "none",
-          },
+          position: "sticky",
+          top: { xs: 56, sm: 64 },
+          zIndex: (t) => t.zIndex.appBar - 1,
+          bgcolor: "background.paper",
+          borderBottom: "1px solid",
+          borderColor: "divider",
+          px: { xs: 2, sm: 3 },
+          py: 1.5,
         }}
       >
-        <Container
-          maxWidth="md"
-          sx={{ position: "relative", zIndex: 1, textAlign: "center" }}
-        >
-          <Chip
-            label="COURSE INTELLIGENCE"
-            size="small"
-            sx={{
-              bgcolor: "rgba(255,255,255,0.1)",
-              color: "white",
-              border: "1px solid rgba(255,255,255,0.2)",
-              fontWeight: 700,
-              fontSize: "0.6rem",
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              mb: 3,
-            }}
-          />
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: 900,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              mb: 2,
-              fontSize: { xs: "2.5rem", md: "3.5rem" },
-            }}
-          >
-            Know every hole{" "}
-            <Box
-              component="span"
-              sx={{ color: "secondary.main", fontStyle: "italic" }}
-            >
-              before you play
-            </Box>
-          </Typography>
-          <Typography
-            sx={{
-              color: "rgba(255,255,255,0.7)",
-              fontSize: { xs: "1rem", md: "1.15rem" },
-              fontWeight: 500,
-              mb: 5,
-              maxWidth: 600,
-              mx: "auto",
-            }}
-          >
-            The world's most advanced course database for serious golfers who
-            demand detailed strategic intelligence.
-          </Typography>
-
-          {/* Search embedded in hero */}
-          <Box
-            sx={{
-              bgcolor: "white",
-              borderRadius: 3,
-              p: 1,
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              gap: 1,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
-              maxWidth: 700,
-              mx: "auto",
-            }}
-          >
-            <TextField
-              fullWidth
-              placeholder="Course name, city, or zip code"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setPage(1);
-              }}
-              variant="standard"
-              InputProps={{
-                disableUnderline: true,
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon sx={{ color: "text.secondary" }} />
-                  </InputAdornment>
-                ),
-                sx: { px: 2, py: 1 },
-              }}
-            />
-          </Box>
-        </Container>
-      </Box>
-
-      <Box
-        sx={{
-          maxWidth: 1200,
-          mx: "auto",
-          width: "100%",
-          px: 3,
-          py: 5,
-        }}
-      >
-        {/* Filter chips row */}
-        <Box sx={{ mb: 5, overflowX: "auto" }}>
-          <Box
-            sx={{ display: "flex", alignItems: "center", gap: 1.5, pb: 1 }}
-          >
-            <Typography
-              variant="caption"
-              sx={{
-                fontWeight: 700,
-                textTransform: "uppercase",
-                letterSpacing: 1.5,
-                color: "text.secondary",
-                mr: 1,
-                whiteSpace: "nowrap",
-              }}
-            >
-              Filter by:
-            </Typography>
-            {stateFilter && (
-              <Chip
-                label={stateFilter}
-                onDelete={clearState}
-                color="primary"
-                size="small"
-                sx={{ fontWeight: 600 }}
-              />
-            )}
-            <Chip
-              label="Has Intel"
-              size="small"
-              variant={intelOnly ? "filled" : "outlined"}
-              color={intelOnly ? "secondary" : "default"}
-              onClick={() => {
-                setIntelOnly(!intelOnly);
-                setPage(1);
-              }}
-              sx={{ fontWeight: 600 }}
-            />
-          </Box>
-        </Box>
-
-        {/* Content header */}
         <Box
           sx={{
+            maxWidth: 1200,
+            mx: "auto",
             display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            mb: 4,
-            borderBottom: "1px solid",
-            borderColor: "divider",
-            pb: 2,
+            alignItems: "center",
+            gap: 1.5,
           }}
         >
-          <Box>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: 900, letterSpacing: "-0.02em" }}
-            >
-              {stateFilter ? `Top Rated in ${stateFilter}` : "All Courses"}
-            </Typography>
-            {data && (
-              <Typography
-                variant="body2"
-                sx={{ color: "text.secondary", fontWeight: 500, mt: 0.5 }}
-              >
-                Found {data.total} course intelligence report
-                {data.total !== 1 ? "s" : ""}
-              </Typography>
-            )}
-          </Box>
-          <FormControl size="small" sx={{ minWidth: 150 }}>
+          <TextField
+            placeholder="Search courses..."
+            value={filters.search}
+            onChange={(e) => setFilters({ search: e.target.value })}
+            size="small"
+            sx={{ flex: 1, maxWidth: { md: 400 } }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ fontSize: 20, color: "text.secondary" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          {/* Sort - hidden on xs */}
+          <FormControl size="small" sx={{ minWidth: 170, display: { xs: "none", sm: "flex" } }}>
             <InputLabel>Sort by</InputLabel>
             <Select
-              value={sort}
+              value={filters.sort}
               label="Sort by"
-              onChange={(e) => {
-                setSort(e.target.value);
-                setPage(1);
-              }}
+              onChange={(e) => setFilters({ sort: e.target.value })}
             >
               {SORT_OPTIONS.map((opt) => (
                 <MenuItem key={opt.value} value={opt.value}>
@@ -266,68 +134,208 @@ export function CourseList() {
               ))}
             </Select>
           </FormControl>
-        </Box>
 
-        {isLoading && (
-          <Box sx={{ textAlign: "center", py: 6 }}>
-            <CircularProgress />
+          {/* Mobile filter button */}
+          {isMobile && (
+            <Button
+              variant="outlined"
+              startIcon={<TuneIcon />}
+              onClick={() => setDrawerOpen(true)}
+              size="small"
+              sx={{ fontWeight: 700, whiteSpace: "nowrap" }}
+            >
+              Filter{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}
+            </Button>
+          )}
+
+          {/* Result count */}
+          {data && (
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.secondary",
+                fontWeight: 500,
+                whiteSpace: "nowrap",
+                display: { xs: "none", sm: "block" },
+              }}
+            >
+              {data.total} course{data.total !== 1 ? "s" : ""}
+            </Typography>
+          )}
+        </Box>
+      </Box>
+
+      {/* Active filter chips */}
+      {chips.length > 0 && (
+        <Box
+          sx={{
+            maxWidth: 1200,
+            mx: "auto",
+            px: { xs: 2, sm: 3 },
+            pt: 1.5,
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          {chips.map((chip) => (
+            <Chip
+              key={chip.key}
+              label={chip.label}
+              onDelete={chip.onDelete}
+              size="small"
+              color="primary"
+              sx={{ fontWeight: 600 }}
+            />
+          ))}
+          {chips.length > 1 && (
+            <Button
+              size="small"
+              onClick={clearAllFilters}
+              sx={{ textTransform: "none", fontWeight: 600, fontSize: "0.75rem" }}
+            >
+              Clear all
+            </Button>
+          )}
+        </Box>
+      )}
+
+      {/* Main content: sidebar + results */}
+      <Box
+        sx={{
+          maxWidth: 1200,
+          mx: "auto",
+          display: "flex",
+          gap: 4,
+          px: { xs: 2, sm: 3 },
+          py: 3,
+        }}
+      >
+        {/* Desktop sidebar */}
+        {!isMobile && (
+          <Box
+            sx={{
+              width: 280,
+              flexShrink: 0,
+              position: "sticky",
+              top: 140,
+              maxHeight: "calc(100vh - 160px)",
+              overflowY: "auto",
+              pr: 1,
+              "&::-webkit-scrollbar": { width: 4 },
+              "&::-webkit-scrollbar-thumb": {
+                bgcolor: "divider",
+                borderRadius: 2,
+              },
+            }}
+          >
+            <CourseFilterPanel
+              filters={filters}
+              setFilters={setFilters}
+              clearAllFilters={clearAllFilters}
+              activeFilterCount={activeFilterCount}
+              resultCount={data?.total}
+            />
           </Box>
         )}
 
-        {error && (
-          <Alert severity="error" sx={{ mb: 2 }}>
-            Failed to load courses. Please try again.
-          </Alert>
-        )}
+        {/* Results grid */}
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          {isLoading && (
+            <Box sx={{ textAlign: "center", py: 6 }}>
+              <CircularProgress />
+            </Box>
+          )}
 
-        {data && (
-          <>
-            {/* 3-column card grid */}
-            <Grid container spacing={3}>
-              {data.courses.map((course) => (
-                <Grid key={course.id} size={{ xs: 12, sm: 6, lg: 4 }}>
-                  <CourseCard course={course} />
-                </Grid>
-              ))}
-            </Grid>
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              Failed to load courses. Please try again.
+            </Alert>
+          )}
 
-            {data.courses.length === 0 && (
-              <Typography
-                color="text.secondary"
-                sx={{ textAlign: "center", py: 4 }}
-              >
-                No courses found. Try a different search or filter.
-              </Typography>
-            )}
+          {data && (
+            <>
+              <Grid container spacing={3}>
+                {data.courses.map((course) => (
+                  <Grid key={course.id} size={{ xs: 12, sm: 6, lg: 4 }}>
+                    <CourseCard course={course} />
+                  </Grid>
+                ))}
+              </Grid>
 
-            {data.total_pages > 1 && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  mt: 6,
-                  gap: 1.5,
-                }}
-              >
-                <Pagination
-                  count={data.total_pages}
-                  page={page}
-                  onChange={(_, p) => setPage(p)}
-                  color="primary"
-                />
+              {data.courses.length === 0 && (
                 <Typography
-                  variant="caption"
-                  sx={{ color: "text.secondary" }}
+                  color="text.secondary"
+                  sx={{ textAlign: "center", py: 4 }}
                 >
-                  Showing {data.courses.length} of {data.total} courses
-                  {stateFilter ? ` in ${stateFilter}` : ""}
+                  No courses found. Try a different search or filter.
                 </Typography>
-              </Box>
-            )}
-          </>
-        )}
+              )}
+
+              {data.total_pages > 1 && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    mt: 6,
+                    gap: 1.5,
+                  }}
+                >
+                  <Pagination
+                    count={data.total_pages}
+                    page={filters.page}
+                    onChange={(_, p) => setFilters({ page: p })}
+                    color="primary"
+                  />
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "text.secondary" }}
+                  >
+                    Showing {data.courses.length} of {data.total} courses
+                  </Typography>
+                </Box>
+              )}
+            </>
+          )}
+        </Box>
       </Box>
+
+      {/* Mobile filter drawer */}
+      <Drawer
+        anchor="bottom"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{
+          sx: {
+            maxHeight: "85vh",
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+          },
+        }}
+      >
+        {/* Drag handle + close */}
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", pt: 1.5, pb: 0.5 }}>
+          <Box sx={{ width: 40, height: 4, borderRadius: 2, bgcolor: "divider", mb: 1 }} />
+          <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end", px: 1 }}>
+            <IconButton size="small" onClick={() => setDrawerOpen(false)}>
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </Box>
+        </Box>
+        <Box sx={{ overflowY: "auto", pb: 2 }}>
+          <CourseFilterPanel
+            filters={filters}
+            setFilters={setFilters}
+            clearAllFilters={clearAllFilters}
+            activeFilterCount={activeFilterCount}
+            resultCount={data?.total}
+            isMobile
+            onApply={() => setDrawerOpen(false)}
+          />
+        </Box>
+      </Drawer>
     </>
   );
 }

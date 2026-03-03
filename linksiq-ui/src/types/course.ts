@@ -42,8 +42,27 @@ export interface CourseListItem {
   total_par: number | null;
   num_holes: number | null;
   total_yardage: number | null;
+  slope_rating: number | null;
+  course_rating: number | null;
   photo_url: string | null;
   has_detailed_holes: boolean;
+}
+
+export interface CourseFilterParams {
+  state?: string;
+  search?: string;
+  has_intel?: boolean;
+  holes?: number;
+  course_type?: string;
+  slope_min?: number;
+  slope_max?: number;
+  rating_min?: number;
+  rating_max?: number;
+  yardage_min?: number;
+  yardage_max?: number;
+  sort?: string;
+  page?: number;
+  per_page?: number;
 }
 
 export interface CourseDetail {

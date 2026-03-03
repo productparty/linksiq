@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import {
   Box,
   Container,
@@ -14,6 +15,7 @@ import {
   Chip,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { fetchStateCounts } from "../api/courses";
 
 const STATES = [
   "MI", "OH", "IN", "IL", "WI", "FL", "CA", "TX", "NY", "NC",
@@ -23,6 +25,12 @@ const STATES = [
 export function Landing() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
+  const { data: stateCounts } = useQuery({
+    queryKey: ["stateCounts"],
+    queryFn: fetchStateCounts,
+    staleTime: 5 * 60 * 1000,
+  });
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -143,21 +151,63 @@ export function Landing() {
           Browse by State
         </Typography>
         <Grid container spacing={1.5}>
-          {STATES.map((state) => (
-            <Grid key={state} size={{ xs: 4, sm: 3, md: 2 }}>
-              <Card variant="outlined">
-                <CardActionArea
-                  onClick={() => navigate(`/courses?state=${state}`)}
+          {STATES.map((state) => {
+            const count = stateCounts?.[state] ?? 0;
+            const hasCourses = count > 0;
+
+            return (
+              <Grid key={state} size={{ xs: 4, sm: 3, md: 2 }}>
+                <Card
+                  variant="outlined"
+                  sx={{
+                    position: "relative",
+                    ...(!hasCourses && {
+                      opacity: 0.45,
+                    }),
+                  }}
                 >
-                  <CardContent sx={{ textAlign: "center", py: 1.5 }}>
-                    <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                      {state}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
+                  <CardActionArea
+                    disabled={!hasCourses}
+                    onClick={() => navigate(`/courses?state=${state}`)}
+                  >
+                    <CardContent sx={{ textAlign: "center", py: 2 }}>
+                      <Typography
+                        variant="h6"
+                        sx={{ fontWeight: 800, letterSpacing: 1 }}
+                      >
+                        {state}
+                      </Typography>
+                      {hasCourses ? (
+                        <Chip
+                          label={count}
+                          size="small"
+                          sx={{
+                            position: "absolute",
+                            top: 6,
+                            right: 6,
+                            bgcolor: "secondary.main",
+                            color: "white",
+                            fontWeight: 800,
+                            fontSize: "0.65rem",
+                            height: 20,
+                            minWidth: 20,
+                            "& .MuiChip-label": { px: 0.75 },
+                          }}
+                        />
+                      ) : (
+                        <Typography
+                          variant="caption"
+                          sx={{ color: "text.disabled", display: "block", mt: 0.25, fontSize: "0.6rem" }}
+                        >
+                          Coming soon
+                        </Typography>
+                      )}
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            );
+          })}
         </Grid>
 
         <Box sx={{ textAlign: "center", mt: 4 }}>
