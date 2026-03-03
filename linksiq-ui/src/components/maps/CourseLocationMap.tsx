@@ -25,7 +25,7 @@ export default function CourseLocationMap({
 
   return (
     <Box>
-      <Box sx={{ borderRadius: 2, overflow: 'hidden', height: { xs: 250, md: 300 } }}>
+      <Box sx={{ borderRadius: 2, overflow: 'hidden', height: { xs: 300, md: 450 } }}>
         <Map
           initialViewState={{
             longitude,
@@ -34,7 +34,7 @@ export default function CourseLocationMap({
           }}
           style={{ width: '100%', height: '100%' }}
           mapStyle={SATELLITE_STYLE}
-          scrollZoom={false}
+          scrollZoom={true}
         >
           <NavigationControl position="top-right" />
 

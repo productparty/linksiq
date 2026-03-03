@@ -26,4 +26,4 @@ export const SATELLITE_STYLE: maplibregl.StyleSpecification = {
 };
 
 export const MAP_MARKER_COLOR = '#FFFFFF';
-export const MAP_DEFAULT_ZOOM = 17;
+export const MAP_DEFAULT_ZOOM = 15;
