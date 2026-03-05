@@ -44,6 +44,7 @@ export interface CourseListItem {
   total_yardage: number | null;
   slope_rating: number | null;
   course_rating: number | null;
+  google_rating: number | null;
   photo_url: string | null;
   has_detailed_holes: boolean;
 }

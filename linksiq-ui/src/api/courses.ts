@@ -8,7 +8,7 @@ import type {
 } from "../types/course";
 
 const COURSE_LIST_COLUMNS =
-  "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, slope_rating, course_rating, photo_url, has_detailed_holes";
+  "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, slope_rating, course_rating, google_rating, photo_url, has_detailed_holes";
 
 const COURSE_DETAIL_COLUMNS =
   "id, name, club_name, city, state, course_type, total_par, num_holes, total_yardage, slope_rating, course_rating, description, walkthrough_narrative, website_url, phone, latitude, longitude, source";
@@ -82,7 +82,8 @@ export async function fetchCourses(params: CourseFilterParams): Promise<CourseLi
       .select(COURSE_LIST_COLUMNS, { count: "exact" });
 
     fb = applyFilters(fb, params);
-    fb = fb.ilike("name", `%${params.search.trim()}%`);
+    const searchTerm = `%${params.search.trim()}%`;
+    fb = fb.or(`name.ilike.${searchTerm},club_name.ilike.${searchTerm}`);
     fb = applySort(fb, sort);
     fb = fb.range(from, to);
 

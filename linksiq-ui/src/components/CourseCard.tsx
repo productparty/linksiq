@@ -114,13 +114,21 @@ export function CourseCard({ course }: Props) {
         </Box>
 
         <CardContent sx={{ p: 3 }}>
-          {/* Name */}
+          {/* Club / Course name */}
           <Typography
             variant="h6"
-            sx={{ fontWeight: 700, lineHeight: 1.3, mb: 0.5 }}
+            sx={{ fontWeight: 700, lineHeight: 1.3, mb: course.club_name && course.club_name !== course.name ? 0 : 0.5 }}
           >
-            {course.name}
+            {course.club_name || course.name}
           </Typography>
+          {course.club_name && course.club_name !== course.name && (
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontWeight: 500, mb: 0.5 }}
+            >
+              {course.name}
+            </Typography>
+          )}
           {/* Location */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, mb: 3 }}>
             <LocationOnIcon sx={{ fontSize: 16, color: "text.secondary" }} />

@@ -58,6 +58,7 @@ export function Favorites() {
                 total_yardage: null,
                 slope_rating: null,
                 course_rating: null,
+                google_rating: null,
                 photo_url: null,
                 has_detailed_holes: false,
               }}
