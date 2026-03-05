@@ -35,3 +35,22 @@
 
 ## Progress Notes
 Starting Brief 2 execution.
+
+---
+
+# Brief 3: Google Places Enrichment Pipeline — IN PROGRESS
+
+## Plan
+- [x] Phase 1: Schema migration (006_google_enrichment.sql) — adds 11 columns to courses, creates course_reviews table
+- [x] Phase 2: Google Places API batch fetch script (enrich-places-api.ts) — tested with --limit 1
+- [x] Phase 3: LLM review extraction script (enrich-llm-extract.ts) — built, needs ANTHROPIC_API_KEY to run
+- [ ] Phase 2 full run: Process all 605 courses (npx tsx enrich-places-api.ts)
+- [ ] Phase 3 full run: Extract insights from reviews (npx tsx enrich-llm-extract.ts)
+- [ ] Verify: website_url + phone population rates
+- [ ] Verify: review counts per course
+- [ ] Verify: LLM-extracted descriptions and hole insights
+
+## Completed
+- Migration 006 applied to production database
+- Dry-run of Places API: 1 course enriched (Eagle Eye GC: 4.6 rating, 670 reviews, website + phone populated, 5 reviews stored)
+- All scripts compile cleanly (TypeScript strict mode)
